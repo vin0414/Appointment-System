@@ -52,6 +52,22 @@
                 </div>
             </div>
         </div>
+        <div class="row g-2">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <canvas></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

@@ -42,7 +42,28 @@
     <div class="container-xl">
         <div class="row g-2">
             <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-id">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -10" />
+                                <path d="M7 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M15 8l2 0" />
+                                <path d="M15 12l2 0" />
+                                <path d="M7 16l10 0" />
+                            </svg>
+                            &nbsp;Other Details
+                        </div>
+                        <form method="POST" class="row g-2" id="form">
+                            @csrf
 
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card">

@@ -53,4 +53,11 @@
       0 => 'Termwind\\Laravel\\TermwindServiceProvider',
     ),
   ),
+  'rmunate/spell-number' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Rmunate\\Utilities\\Providers\\SpellNumberProvider',
+    ),
+  ),
 );
