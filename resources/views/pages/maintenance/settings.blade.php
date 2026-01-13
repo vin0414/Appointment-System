@@ -90,7 +90,7 @@
                                 <tbody>
                                     @foreach($logs as $row)
                                     <tr>
-                                        <td>{{ date('M d,Y h:i a',strtotime($row->created_at)) }}</td>
+                                        <td>{{ date('M d, Y h:i a',strtotime($row->created_at)) }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->activities }}</td>
                                         <td>{{ $row->ip_address }}</td>
@@ -113,7 +113,7 @@
                                 <tbody>
                                     @foreach($salary as $row)
                                     <tr>
-                                        <td>{{ date('M d,Y h:i a',strtotime($row->created_at)) }}</td>
+                                        <td>{{ date('M d, Y h:i a',strtotime($row->created_at)) }}</td>
                                         <td>SG/JG/PG {{ $row->salary_grade }}</td>
                                         <td>{{ number_format($row->amount,2) }}</td>
                                         <td>{{ $row->amount_in_words }}</td>

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Number;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class Files extends Controller
 {
@@ -343,4 +344,176 @@ class Files extends Controller
         }
     }
 
+    public function saveAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+        [
+            'email' => 'required|email:rfc,dns',
+            'fullname' =>'required|string',
+            'status'=>'required|integer',
+            'password' => [
+                'required',
+                'min:8',
+                'max:255',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/'
+            ]
+        ],[
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least 8 characters.',
+            'password.max' => 'Password must not exceed 255 characters.',
+            'password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $status = $request->input('status');
+            User::create([
+                'name'=>$request->input('fullname'),
+                'email'=>$request->input('email'),
+                'email_verified_at' => ($status == 1) ? now() : null,
+                'password'=>Hash::make($request->input('password')),
+                'remember_token'=>Str::random(60)
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Registered account : '.$request->input('fullname'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully added']);
+        }
+    }
+
+    public function editAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+        [
+            'email' => 'required|email:rfc,dns',
+            'fullname' =>'required|string',
+            'status'=>'required|integer',
+            'password' => [
+                'required',
+                'min:8',
+                'max:255',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/'
+            ]
+        ],[
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password must be at least 8 characters.',
+            'password.max' => 'Password must not exceed 255 characters.',
+            'password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $id = $request->input('account_id');
+            $status = $request->input('status');
+            DB::table('users')
+            ->where('id',$id)
+            ->update([
+                'name'=>$request->input('fullname'),
+                'email'=>$request->input('email'),
+                'email_verified_at' => ($status == 1) ? now() : null,
+                'password'=>Hash::make($request->input('password')),
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Update account : '.$request->input('fullname'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
+        }
+    }
+
+    public function resetAccount(Request $request)
+    {
+        $val = $request->input('value');
+        DB::table('users')
+        ->where('id',$val)
+        ->update([
+            'password'=>Hash::make('Abc12345?')
+        ]);
+        Logs::create([
+            'id' => Auth::id(),
+            'activities' => 'Reset the  account of ID : '.$val,
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+        return response()->json(['status'=>200,'message'=>'Successfully reset']);
+    }
+
+    public function accountPassword(Request $request)
+    {
+        $id = Auth::user()->id;
+        $validator = Validator::make($request->all(),[
+            'current_password' => [
+                'required','min:8','max:255',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/'
+            ],
+            'new_password' => [
+                'required','min:8','max:255',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/'
+            ],
+            'confirm_password'=>[
+                'required','same:new_password'
+            ]
+        ], [
+            // Password errors
+            'current_password.required' => 'Password is required.',
+            'current_password.min' => 'Password must be at least 8 characters.',
+            'current_password.max' => 'Password must not exceed 255 characters.',
+            'current_password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+            'new_password.required' => 'Password is required.',
+            'new_password.min' => 'Password must be at least 8 characters.',
+            'new_password.max' => 'Password must not exceed 255 characters.',
+            'new_password.regex' => 'Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.',
+            'confirm_password.required' => 'Password is required.',
+            'confirm_password.same' => 'Mismatch password. Please try again',
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $account = User::where('id',$id)->first();
+            if (Hash::check($request->input('new_password'), $account->password)) {
+                return response()->json([
+                    'status' => 422,
+                    'errors' => [
+                        'new_password' => ['Please create a new password different from the current one']
+                    ]
+                ]);
+            }
+            else
+            {
+                DB::table('users')
+                ->where('id',$id)
+                ->update([
+                    'password'=>bcrypt($request->input('new_password'))
+                ]);
+                return response()->json([
+                    'status' => 200,
+                    'success' => 'Successfully applied changes',
+                ]);
+            }
+        }
+    }
 }

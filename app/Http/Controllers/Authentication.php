@@ -8,8 +8,6 @@ use \App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class Authentication extends Controller
 {
@@ -43,7 +41,9 @@ class Authentication extends Controller
 
         RateLimiter::hit($throttleKey,60);
 
-        $user = User::where('email', $credentials['email'])->first();
+        $user = User::where('email', $credentials['email'])
+                ->whereNotNull('email_verified_at')
+                ->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return back()->with(

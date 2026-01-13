@@ -28,9 +28,28 @@ class Home extends Controller
     {
         $data['title'] = "Dashboard";
         $data['schools'] = Schools::count();
+        $data['list'] = DB::table('schools')
+                        ->select('*')
+                        ->orderBy('school_id','DESC')
+                        ->limit(5)->get();
         $data['applicants'] = Applicant::count();
         $data['other'] = Other::count();
         $data['assignment'] = Assignment::count();
+        //compute the total applicant based on the assigned school
+        $data['total'] = DB::table('assignments as a')
+                        ->leftJoin('schools as b', 'b.school_id', '=', 'a.school_id')
+                        ->select(
+                            'b.school_name',
+                            DB::raw('COUNT(a.applicant_id) as total')
+                        )
+                        ->groupBy('a.school_id', 'b.school_name')
+                        ->get();
+        $data['position'] = DB::table('applicants')
+                            ->select('position',
+                            DB::raw('COUNT(applicant_id) as total'))
+                            ->groupBy('position')
+                            ->get();
+
         return view('pages.dashboard',$data);
     }
 
@@ -137,13 +156,28 @@ class Home extends Controller
 
     public function editAccount($id)
     {
-        $data['title'] = "Maintenance";
-        return view('pages.maintenance.edit-account',$data);
+        $user = User::where('remember_token',$id)->first();
+        if(empty($user) || !$user)
+        {
+            return redirect('maintenance/accounts')->with('fail', 'Sorry! Data not found. Please try again');
+        }
+        else
+        {
+            $data['title'] = "Maintenance";
+            $data['user'] = $user;
+            return view('pages.maintenance.edit-account',$data);
+        }
     }
 
     public function recovery()
     {
         $data['title'] = "Maintenance";
         return view('pages.maintenance.recovery',$data);
+    }
+
+    public function profile()
+    {
+        $data['title'] = "Profile";
+        return view('pages.profile',$data);
     }
 }

@@ -42,6 +42,11 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
+        @if(session('fail'))
+        <div class="alert alert-important alert-danger alert-dismissible" role="alert">
+            {{ session('fail') }}
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Accounts</div>
@@ -107,5 +112,49 @@
 </div>
 <script>
 $('#table').DataTable();
+$(document).on('click', '.reset', function() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do you want to reset this account?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Continue',
+        cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+        // Action based on user's choice
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "{{ route('accounts/reset') }}",
+                method: "POST",
+                data: {
+                    value: $(this).val(),
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    if (response.status === 200) {
+                        Swal.fire({
+                            title: 'Great!',
+                            text: "Successfully reset",
+                            icon: 'success',
+                            confirmButtonText: 'Continue'
+                        }).then((result) => {
+                            // Action based on user's choice
+                            if (result.isConfirmed) {
+                                //do nothing
+                            }
+                        });
+                    } else {
+                        var errors = response.errors;
+                        swal.fire({
+                            title: 'Warning',
+                            text: errors.message,
+                            icon: 'warning'
+                        });
+                    }
+                }
+            });
+        }
+    });
+});
 </script>
 @endsection

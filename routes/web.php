@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\Files;
 use App\Http\Controllers\Export;
+use App\Http\Controllers\Download;
 use App\Http\Controllers\Authentication;
 //save the applicant data
 Route::post('applicant/save',[Files::class,'saveApplicant'])->name('applicant/save');
@@ -43,9 +44,12 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('salary/fetch',[Files::class,'fetchSalary'])->name('salary/fetch');
     Route::post('accounts/save', [Files::class,'saveAccount'])->name('accounts/save');
     Route::post('accounts/update', [Files::class,'editAccount'])->name('accounts/update');
+    Route::post('accounts/reset',[Files::class,'resetAccount'])->name('accounts/reset');
+    Route::post('accounts/password',[Files::class,'accountPassword'])->name('accounts/password');
     //export
     Route::get('export/form/32/{id}',[Export::class,'exportForm32'])->name('export/form/32');
     Route::get('export/form/4/{id}',[Export::class,'exportForm4'])->name('export/form/4');
     Route::get('export/form/1/{id}',[Export::class,'exportForm1'])->name('export/form/1');
     Route::get('export/form/33/B/{id}',[Export::class,'exportForm33B'])->name('export/form/33/B');
+    Route::get('download',[Download::class,'downloadFile'])->name('download');
 });

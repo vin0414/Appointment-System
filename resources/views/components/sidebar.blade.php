@@ -142,8 +142,8 @@
                 <li class="nav-item mt-3">
                     <h6 class="ps-4 text-uppercase text-xs font-weight-bolder opacity-6">Account Settings</h6>
                 </li>
-                <li class="nav-item <?= ($title=="My Profile") ? 'active' :'' ?>">
-                    <a class="nav-link" href="">
+                <li class="nav-item <?= ($title=="Profile") ? 'active' :'' ?>">
+                    <a class="nav-link" href="{{ route('profile') }}">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
