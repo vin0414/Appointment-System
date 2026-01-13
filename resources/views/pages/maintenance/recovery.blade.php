@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="page-pretitle">{{ config('app.name') }}</div>
-                <h2 class="page-title"><?= $title ?></h2>
+                <h2 class="page-title">System Back-Up</h2>
             </div>
         </div>
     </div>

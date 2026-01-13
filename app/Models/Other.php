@@ -12,6 +12,9 @@ class Other extends Model
     protected $table = 'others';
     protected $primaryKey = 'other_id';
     public $incrementing = true;
-    protected $fillable = ['applicant_id','salary_grade','employment_type','appointment','with','status','item','page','date_signed'];
+    protected $fillable = [
+        'applicant_id','salary_id','employment_type','appointment','with',
+        'status','item','page','date_signed','published_from','published_to',
+        'posted_from','posted_to','assessment_date'];
     public $timestamps = true;
 }

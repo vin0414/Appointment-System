@@ -12,6 +12,6 @@ class Salary extends Model
     protected $table = 'salaries';
     protected $primaryKey = 'salary_id';
     public $incrementing = true;
-    protected $fillable = ['salary_grade','amount'];
+    protected $fillable = ['salary_grade','amount','amount_in_words'];
     public $timestamps = true;
 }

@@ -89,6 +89,23 @@
                         </div>
                     </div>
                     <div class="col-lg-12">
+                        <div class="row g-2">
+                            <div class="col-lg-4">
+                                <label class="form-label">Highest Education Attainment</label>
+                                <input type="text" class="form-control" value="{{ $applicant->education }}">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label">Total Years/Month Relevant Work Experience</label>
+                                <input type="text" class="form-control" value="{{ $applicant->experience }}">
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="form-label">Total Hours Relevant Training/Seminars</label>
+                                <input type="text" class="form-control" value="{{ $applicant->training }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Choose to Download</label>
                         <a href="{{ route('export/form/32',['id'=>$applicant->applicant_id]) }}"
                             class="btn btn-default">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -127,7 +144,7 @@
                             </svg>
                             &nbsp;Form No. 4
                         </a>
-                        <a href="{{ route('export/form/1',['id'=>$applicant->applicant_id]) }}" class="btn btn-default">
+                        <!-- <a href="{{ route('export/form/1',['id'=>$applicant->applicant_id]) }}" class="btn btn-default">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -138,7 +155,7 @@
                                 <path d="M12 4l0 12" />
                             </svg>
                             &nbsp;Form No. 1
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>

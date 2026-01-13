@@ -12,6 +12,18 @@
             </div>
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
+                    <a href="{{ route('records/view',['id'=>$applicant->applicant_id]) }}" class="btn btn-default">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-user-search">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                            <path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" />
+                            <path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                            <path d="M20.2 20.2l1.8 1.8" />
+                        </svg>
+                        &nbsp;View
+                    </a>
                     <a href="{{ route('records') }}" class="btn btn-success btn-5 d-none d-sm-inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -60,7 +72,121 @@
                         </div>
                         <form method="POST" class="row g-2" id="form">
                             @csrf
-
+                            <input type="hidden" name="applicant" value="{{ $applicant->applicant_id }}" />
+                            <div class="col-lg-12">
+                                <div class="row g-2">
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Salary Grade</label>
+                                        <select name="salary_grade" class="form-select">
+                                            <option value="">Choose</option>
+                                            @foreach($salary as $row)
+                                            <option value="{{ $row->salary_id }}"
+                                                {{ !empty($info) && $info->salary_id == $row->salary_id ? 'selected' : '' }}>
+                                                {{ $row->salary_grade }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div id="salary_grade-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <label class="form-label">Type of Employment</label>
+                                        <input type="text" class="form-control" name="employment"
+                                            value="{{ $info->employment_type ?? '' }}">
+                                        <div id="employment-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-label">Type of Appointment</label>
+                                        <input type="text" class="form-control" name="appointment"
+                                            value="{{ $info->appointment ?? '' }}">
+                                        <div id="appointment-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row g-2">
+                                    <div class="col-lg-8">
+                                        <label class="form-label">Name of Person</label>
+                                        <input type="text" class="form-control" name="person"
+                                            value="{{ $info->with ?? '' }}">
+                                        <div id="person-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label class="form-label">Status</label>
+                                        <input type="text" class="form-control" name="status"
+                                            value="{{ $info->status ?? '' }}">
+                                        <div id="status-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row g-2">
+                                    <div class="col-lg-7">
+                                        <label class="form-label">Plantilla Item No</label>
+                                        <input type="text" class="form-control" name="item"
+                                            value="{{ $info->item ?? '' }}">
+                                        <div id="item-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label class="form-label">Page</label>
+                                        <input type="number" class="form-control" name="page"
+                                            value="{{ $info->page ?? '' }}">
+                                        <div id="page-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="form-label">Date Signed</label>
+                                        <input type="date" class="form-control" name="date"
+                                            value="{{ $info->date_signed ?? '' }}">
+                                        <div id="date-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label">Published in CSC Job Portal</label>
+                                <div class="row g-2">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">From</label>
+                                        <input type="date" class="form-control" name="published_from"
+                                            value="{{ $info->published_from ?? '' }}">
+                                        <div id="published_from-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-label">to</label>
+                                        <input type="date" class="form-control" name="published_to"
+                                            value="{{ $info->published_to ?? '' }}">
+                                        <div id="published_to-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label">Posted in SDO/School/LGU Bulletin board</label>
+                                <div class="row g-2">
+                                    <div class="col-lg-6">
+                                        <label class="form-label">From</label>
+                                        <input type="date" class="form-control" name="posted_from"
+                                            value="{{ $info->posted_from ?? '' }}">
+                                        <div id="posted_from-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-label">to</label>
+                                        <input type="date" class="form-control" name="posted_to"
+                                            value="{{ $info->posted_to ?? '' }}">
+                                        <div id="posted_to-error" class="error-message text-danger text-sm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="form-label">Assessment Started on</label>
+                                <input type="date" class="form-control" name="assessment"
+                                    value="{{ $info->assessment_date ?? '' }}">
+                                <div id="assessment-error" class="error-message text-danger text-sm"></div>
+                            </div>
+                            <div class="col-lg-12">
+                                <i>Last Modified : {{ $info->updated_at ?? 'N/A' }}</i>
+                            </div>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="ti ti-device-floppy"></i>&nbsp;Save Data
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -170,6 +296,38 @@ $('#frmAssignment').submit(function(e) {
     $('.error-message').html('');
     $.ajax({
         url: "{{ route('records/assign') }}",
+        method: "POST",
+        data: data,
+        success: function(response) {
+            if (response.status == 200) {
+                // Success logic here
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response.message,
+                }).then(() => {
+                    location.reload();
+                });
+            } else {
+                var errors = response.errors;
+                for (var field in errors) {
+                    $('#' + field + '-error').html('<p>' + errors[field][0] + '</p>');
+                    $('#' + field).addClass('text-danger');
+                }
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.responseJSON);
+        }
+    });
+});
+
+$('#form').submit(function(e) {
+    e.preventDefault();
+    let data = $(this).serialize();
+    $('.error-message').html('');
+    $.ajax({
+        url: "{{ route('records/save') }}",
         method: "POST",
         data: data,
         success: function(response) {

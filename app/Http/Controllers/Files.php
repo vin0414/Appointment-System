@@ -7,10 +7,14 @@ use \App\Models\Applicant;
 use \App\Models\Logs;
 use \App\Models\Schools;
 use \App\Models\Assignment;
+use \App\Models\Salary;
+use \App\Models\Other;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Number;
+
 
 class Files extends Controller
 {
@@ -125,7 +129,7 @@ class Files extends Controller
 
     public function assignApplicant(Request $request)
     {
-    $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(),[
             'applicant'=>'required|numeric',
             'school'=>'required|numeric',
         ]);
@@ -138,10 +142,22 @@ class Files extends Controller
         }
         else
         {
-            Assignment::create([
-                'applicant_id'=>$request->input('applicant'),
-                'school_id'=>$request->input('school'),
-            ]);
+            $checkData = Assignment::where('applicant_id',$request->input('applicant'))->first();
+            if(!$checkData || empty($checkData))
+            {
+                Assignment::create([
+                    'applicant_id'=>$request->input('applicant'),
+                    'school_id'=>$request->input('school'),
+                ]);
+            }
+            else
+            {
+                DB::table('assignments')
+                ->where('applicant_id',$request->input('applicant'))
+                ->update([
+                    'school_id'=>$request->input('school'),
+                ]);
+            }
             Logs::create([
                 'id' => Auth::id(),
                 'activities' => 'Assigned user ID : '.$request->input('applicant'),
@@ -151,4 +167,180 @@ class Files extends Controller
             return response()->json(['status'=>200,'message'=>'Successfully assigned']);
         }
     }
+
+    public function saveSalary(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'salary_grade'=>'required',
+            'amount'=>'required',
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $raw = $request->input('amount');
+            // Remove commas and trim spaces
+            $clean = trim(str_replace(',', '', $raw));
+            // Remove non-numeric characters except dot
+            $clean = preg_replace('/[^0-9.]/', '', $clean);
+            // Cast to double
+            $amount = (double) $clean;
+
+            Salary::create([
+                'salary_grade'=>$request->input('salary_grade'),
+                'amount'=>$amount,
+                'amount_in_words'=>$this->pesoToWords($amount)
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Added new salary grade : '.$request->input('salary_grade'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully added']);
+        }
+    }
+
+    public function pesoToWords($amount)
+    {
+        $whole = floor($amount);
+        $decimal = round(($amount - $whole) * 100);
+
+        $words = Number::spell($whole) . ' pesos';
+
+        if ($decimal > 0) {
+            $words .= ' and ' . Number::spell($decimal) . ' centavos';
+        }
+
+        return ucwords($words);
+    }
+
+    public function editSalary(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'edit_salary_grade'=>'required',
+            'edit_amount'=>'required',
+        ],[
+            'edit_salary_grade.required'=>'Salary Grade is required',
+            'edit_amount.required'=>'Amount is required'
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $raw = $request->input('edit_amount');
+            // Remove commas and trim spaces
+            $clean = trim(str_replace(',', '', $raw));
+            // Remove non-numeric characters except dot
+            $clean = preg_replace('/[^0-9.]/', '', $clean);
+            // Cast to double
+            $amount = (double) $clean;
+
+            DB::table('salaries')
+            ->where('salary_id',$request->input('salary_id'))
+            ->update([
+                'salary_grade'=>$request->input('edit_salary_grade'),
+                'amount'=>$amount,
+                'amount_in_words'=>$this->pesoToWords($amount)
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Update the salary grade : '.$request->input('edit_salary_grade'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
+        }
+    }
+
+    public function fetchSalary(Request $request)
+    {
+        $val = $request->input('value');
+        $data = Salary::where('salary_id',$val)->first();
+        return response()->json(['status'=>200,'data'=>$data]);
+    }
+
+    public function saveRecords(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'salary_grade'=>'required',
+            'employment'=>'required',
+            'appointment'=>'required',
+            'person'=>'required',
+            'status'=>'required',
+            'item'=>'required',
+            'page'=>'required',
+            'date'=>'required'
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            $checkData = Other::where('applicant_id',$request->input('applicant'))->first();
+            if(!$checkData||empty($checkData))
+            {
+                Other::create([
+                    'applicant_id'=>$request->input('applicant'),
+                    'salary_id'=>$request->input('salary_grade'),
+                    'employment_type'=>$request->input('employment'),
+                    'appointment'=>$request->input('appointment'),
+                    'with'=>$request->input('person'),
+                    'status'=>$request->input('status'),
+                    'item'=>$request->input('item'),
+                    'page'=>$request->input('page'),
+                    'date_signed'=>$request->input('date'),
+                    'published_from'=>$request->input('published_from'),
+                    'published_to'=>$request->input('published_to'),
+                    'posted_from'=>$request->input('posted_from'),
+                    'posted_to'=>$request->input('posted_to'),
+                    'assessment_date'=>$request->input('assessment'),
+                ]);
+            }
+            else
+            {
+                DB::table('others')
+                ->where('applicant_id',$request->input('applicant'))
+                ->update([
+                    'applicant_id'=>$request->input('applicant'),
+                    'salary_id'=>$request->input('salary_grade'),
+                    'employment_type'=>$request->input('employment'),
+                    'appointment'=>$request->input('appointment'),
+                    'with'=>$request->input('person'),
+                    'status'=>$request->input('status'),
+                    'item'=>$request->input('item'),
+                    'page'=>$request->input('page'),
+                    'date_signed'=>$request->input('date'),
+                    'published_from'=>$request->input('published_from'),
+                    'published_to'=>$request->input('published_to'),
+                    'posted_from'=>$request->input('posted_from'),
+                    'posted_to'=>$request->input('posted_to'),
+                    'assessment_date'=>$request->input('assessment'),
+                    'updated_at'=>now()
+                ]);
+            }
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Save/update the records of Applicant No : '.$request->input('applicant'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully save/update data']);
+        }
+    }
+
 }

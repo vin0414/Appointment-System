@@ -6,10 +6,9 @@ use \App\Models\Assignment;
 use \App\Models\Schools;
 use \App\Models\Other;
 use \App\Models\Applicant;
-use Illuminate\Support\Facades\Auth;
+use \App\Models\Salary;
+use \App\Models\User;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class Home extends Controller
 {
@@ -82,8 +81,11 @@ class Home extends Controller
             $data['title'] = "Records";
             $data['applicant'] = $applicant;
             $data['schools'] = Schools::all();
+            $data['salary'] = Salary::all();
             //assigned
             $data['assignment'] = Assignment::where('applicant_id',$id)->first();
+            //information
+            $data['info'] = Other::where('applicant_id',$id)->first();
             return view('pages.records.edit',$data);
         }
     }
@@ -103,6 +105,12 @@ class Home extends Controller
         }
     }
 
+    public function reports()
+    {
+        $data['title'] = "Reports";
+        return view('pages.reports.index',$data);
+    }
+
     public function settings()
     {
         $data['title'] = "Maintenance";
@@ -110,6 +118,32 @@ class Home extends Controller
                         ->leftJoin('users as b','b.id','=','a.id')
                         ->select('a.*','b.name')
                         ->get();
+        $data['salary'] = Salary::all();
         return view('pages.maintenance.settings',$data);
+    }
+
+    public function accounts()
+    {
+        $data['title'] = "Maintenance";
+        $data['users'] = User::all();
+        return view('pages.maintenance.account',$data);
+    }
+
+    public function createAccount()
+    {
+        $data['title'] = "New Account";
+        return view('pages.maintenance.new-account',$data);
+    }
+
+    public function editAccount($id)
+    {
+        $data['title'] = "Maintenance";
+        return view('pages.maintenance.edit-account',$data);
+    }
+
+    public function recovery()
+    {
+        $data['title'] = "Maintenance";
+        return view('pages.maintenance.recovery',$data);
     }
 }

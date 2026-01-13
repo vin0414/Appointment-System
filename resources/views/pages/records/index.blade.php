@@ -71,7 +71,7 @@
                                                     d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415" />
                                                 <path d="M16 5l3 3" />
                                             </svg>
-                                            &nbsp;Update
+                                            &nbsp;Edit Record
                                         </a>
                                         <a href="{{ route('records/view',['id'=>$row->applicant_id]) }}"
                                             class="dropdown-item">
