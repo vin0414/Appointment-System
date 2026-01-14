@@ -281,54 +281,62 @@
                 <tbody>
                     <tr>
                         <td>
-                            <input type="checkbox" style="width:15px;height:15px;"> <b>Validated per RAI for the month
+                            <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
+                            <b>Validated per
+                                RAI for the month
                                 of</b>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="width:15px;height:15px;"> <b>Invalidated per CSCRO/FO letter
+                            <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
+                            <b>Invalidated
+                                per
+                                CSCRO/FO letter
                                 dated</b>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="width:15px;height:15px;"> <b>Appeal</b>
+                            <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
+                            <b>Appeal</b>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="margin-left:40px;width:15px;height:15px;">
+                            <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             CSCRO/CSC-Commission
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="width:15px;height:15px;"> <b>Petition for Review</b>
+                            <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
+                            <b>Petition for
+                                Review</b>
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="margin-left:40px;width:15px;height:15px;">
+                            <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             CSCRO/CSC-Commission
                         </td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="margin-left:40px;width:15px;height:15px;">
+                            <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             Court of Appeals
-                        </td>
+                        </td>2
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="checkbox" style="margin-left:40px;width:15px;height:15px;">
+                            <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             Supreme Court
                         </td>
                         <td>&nbsp;</td>
