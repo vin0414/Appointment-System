@@ -4,17 +4,21 @@
 #text {
     line-height: 2.5;
     text-align: justify;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 #table {
-    border: 2px solid black;
+    border: 1px solid black;
     border-collapse: collapse;
 }
 
 #table th,
 #table td {
     border: 1px solid black;
+}
+
+#header {
+    font-size: 15px;
 }
 </style>
 
@@ -30,25 +34,26 @@
     $salary = \App\Models\Salary::where('salary_id',$other->salary_id)->first();
     @endphp
     <div>
-        <small>{{ strtoupper($school->school_name) }}</small> <label style="float:right;"><i><small>For
-                    Accredited/Deregulated
-                    Agencies</small></i></label>
+        <label style="font-size: 12px;">{{ strtoupper($school->school_name) }}</label>
+        <label style="float:right;font-size:12px;">
+            <i>For Accredited/Deregulated Agencies</i>
+        </label>
     </div>
-    <div style="border:1px solid #000; padding:15px;">
-        <div style="border:1px solid #000; padding:10px;">
+    <div style="border:1px solid #000; padding:15px;background-color:gray;">
+        <div style="border:1px solid #000; padding:10px;background-color:white;">
             <div><b><i>CSFORM No. 33-B</i></b></div>
             <small><i>Revised 2018</i></small>
             <div>
-                <label style="float:right;"><i>(Stamp of Date of Receipt)</i></label>
+                <label style="float:right;margin-right:50px;"><small><i>(Stamp of Date of Receipt)</i></small></label>
             </div>
             <br /><br /><br />
-            <div>
+            <div id="header">
                 <center><b>Republic of the Philippines</b></center>
             </div>
-            <div>
+            <div id="header">
                 <center>Department of Education - Schools Division Office of General Trias City</center>
             </div>
-            <div>
+            <div id="header">
                 <center>Barangay Sta. Clara, General Trias City, Cavite</center>
             </div>
             <br /><br /><br />
@@ -57,7 +62,7 @@
                 <div style="text-align:center; display:inline-block;">
                     You are hereby appointed as
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px; font-weight:bold;">
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 120px; font-weight:bold;">
                         {{ strtoupper($applicants->position) }}
                     </span>
                     (SG/JG/PG <u>&nbsp;{{ $salary->salary_grade }}&nbsp;</u>)
@@ -69,10 +74,11 @@
             <div id="text">
                 <div style="display:inline-block;">
                     under
-                    <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding: 0 20px;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding: 0 30px;">
                         {{ strtoupper($other->employment_type) }}
                     </span>
-                    status at the <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;">
+                    status at the <span
+                        style="display:inline-block; border-bottom:1px solid #000;padding:0 10px; font-weight:bold;">
                         Department of Education - Division of General Trias City
                     </span>
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;">
@@ -97,10 +103,10 @@
             <div id="text" style="margin-left: 40px;">
                 <div style="display:inline-block;">
                     The nature of this appointment is
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 10px; font-weight:bold;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 30px; font-weight:bold;">
                         {{ strtoupper($other->appointment) }}
                     </span>
-                    vice <u><b>&nbsp;{{ $other->with }}&nbsp;</b></u> who
+                    vice <u><b style="padding:0 20px;">&nbsp;{{ $other->with }}&nbsp;</b></u> who
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:230px;">
                         <i>(Original, Promotion, etc)</i>
                     </div>
@@ -112,7 +118,8 @@
                         {{ strtoupper($other->status) }}
                     </span>
                     with Plantilla Item No.
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 50px; font-weight:bold;">
+                    <span
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px; font-weight:bold;">
                         {{ strtoupper($other->item) }}
                     </span> Page
                     <u><b>&nbsp;{{ $other->page }}&nbsp;</b></u>.
@@ -134,11 +141,11 @@
                 <label style="float:right;margin-right:50px;margin-top:-20px;"><i><small>Schools Division
                             Superitendent</small></i></label>
             </div>
-            <br /><br /><br />
+            <br /><br />
             <div>
                 <label style="float:right;">
                     <b
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px;">{{ date('F d,Y',strtotime($other->date_signed)) }}</b>
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px;">{{ date('d F, Y',strtotime($other->date_signed)) }}</b>
                 </label><br /><br />
                 <label style="float:right;margin-right:100px;margin-top:-20px;">
                     <small>Date of Signing</small>
@@ -149,17 +156,17 @@
                 <b>Accredited/Deregulated Pursuant to <br /></b>
                 <b>CSC Resolution No. 2400504, s. 2024</b>
             </div>
-            <br /><br /><br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <div>
-                ______________________________________
-                <label style="float:right;"><i><small>(Stamp of Date of Release)</small></i></label>
+
+                <label style="float:right;margin-right:50px;"><i><small>(Stamp of Date of Release)</small></i></label>
             </div>
             <br /><br />
         </div>
     </div>
     <br />
-    <div style="border:1px solid #000; padding:15px;">
-        <div style="border:1px solid #000; padding:10px;">
+    <div style="border:1px solid #000; padding:15px;background-color:gray;">
+        <div style="border:1px solid #000; padding:10px;background-color:white;">
             <div>
                 <center><b>Certification</b></center>
             </div>
@@ -174,7 +181,7 @@
             <div id="text" style="margin-left: 20px;">
                 <div style="display:inline-block;">
                     This position was published at
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 50px; font-weight:bold;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 75px; font-weight:bold;">
                         CSC Job Portal
                     </span> from
                     <span
@@ -183,7 +190,7 @@
                     </span> to
                 </div>
             </div>
-            <div style="line-height: 2.5;">
+            <div id="text">
                 <div style="display:inline-block;">
                     <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
                         {{ date('F d, Y',strtotime($other->published_to)) }}
@@ -194,20 +201,20 @@
                     </span>
                 </div>
             </div>
-            <div style="line-height: 2.5;">
+            <div id="text">
                 <div style="display:inline-block;">
                     from
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 5px;font-size:15px;">
+                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
                         {{ date('F d, Y',strtotime($other->posted_from)) }}
                     </span> to
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 5px;font-size:15px;">
+                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
                         {{ date('F d, Y',strtotime($other->posted_to)) }}
                     </span> in consonance with RA No. 7041. The assessment by
                 </div>
             </div>
-            <div style="line-height: 2.5;">
+            <div id="text">
                 the Human Resource Merit Promotion and Selection Board (HRMPSB) started on
                 <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
                     {{ date('F d, Y',strtotime($other->assessment_date)) }}.
@@ -222,16 +229,18 @@
                 </label>
             </div>
         </div>
-        <div style="border:1px solid #000; padding:10px;">
+        <br />
+        <div style="border:1px solid #000; padding:10px;background-color:white;">
             <div>
                 <center><b>Certification</b></center>
             </div>
             <br />
             <div id="text" style="margin-left: 40px;">
                 This is to certify that the appointee has been screened and found qualified by the majority of the
+                HRMPSB
             </div>
             <div id="text">
-                HRMPSB during the deliberation held on
+                during the deliberation held on
                 <span
                     style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;padding:0 20px;">
                     {{ date('F d, Y',strtotime($other->assessment_date)) }}
@@ -257,9 +266,9 @@
         </div>
     </div>
     <br />
-    <div style="border:1px solid #000; padding:15px;">
+    <div style="border:1px solid #000; padding:15px;background-color:gray;">
         <center style="margin-bottom:10px;"><b>CSC/HRMO Notation</b></center>
-        <div style="border:1px solid #000; padding:10px;">
+        <div style="border:1px solid #000; padding:10px;background-color:white;">
             <table id="table" style="width:100%;">
                 <thead>
                     <th>
@@ -329,8 +338,8 @@
         </div>
     </div>
     <br />
-    <div style="border:1px solid #000; padding:15px;">
-        <table style="width: 100%;" id="table">
+    <div style="border:1px solid #000; padding:15px;background-color:gray;">
+        <table style="width: 100%;background-color:white;" id="table">
             <tbody>
                 <tr>
                     <td style="width:50%;">

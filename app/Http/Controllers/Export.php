@@ -72,7 +72,7 @@ class Export extends Controller
                         <tr>
                             <td colspan="3">&nbsp;</td>
                             <td colspan="2">
-                                <center><u>&nbsp;&nbsp;<b>Hon. Luis “Jon-Jon” Alandy Ferrer IV</b>&nbsp;&nbsp;</u></center>
+                                <center><u>&nbsp;<b>Hon. Luis “Jon-Jon” A. Ferrer IV</b>&nbsp;</u></center>
                                 <center><small>Municipal Mayor</small></center>
                             </td>
                         </tr>
