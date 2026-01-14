@@ -5,6 +5,7 @@
     line-height: 2.5;
     text-align: justify;
     font-size: 14px;
+    width: 100%;
 }
 
 #table {
@@ -32,6 +33,7 @@
     $school = \App\Models\Schools::where('school_id',$assignment->school_id)->first();
     $other = \App\Models\Other::where('applicant_id',$id)->first();
     $salary = \App\Models\Salary::where('salary_id',$other->salary_id)->first();
+    $salutatory = ($applicants->gender=="Male") ? '<u>Mr.</u>/Mrs./Ms.:' : 'Mr./Mrs./<u>Ms.</u>:';
     @endphp
     <div>
         <label style="font-size: 12px;">{{ strtoupper($school->school_name) }}</label>
@@ -41,9 +43,9 @@
     </div>
     <div style="border:1px solid #000; padding:15px;background-color:gray;">
         <div style="border:1px solid #000; padding:10px;background-color:white;">
-            <div><b><i>CSFORM No. 33-B</i></b></div>
-            <small><i>Revised 2018</i></small>
+            <div><b><i>CS FORM No. 33-B</i></b></div>
             <div>
+                <small><i>Revised 2025</i></small>
                 <label style="float:right;margin-right:50px;"><small><i>(Stamp of Date of Receipt)</i></small></label>
             </div>
             <br /><br /><br />
@@ -57,17 +59,17 @@
                 <center>Barangay Sta. Clara, General Trias City, Cavite</center>
             </div>
             <br /><br /><br />
-            <div><b>Mr./Ms./Mrs.:</b> <u><b>{{ $fullname }}</b></u></div>
+            <div><b>{!! $salutatory !!}</b> <u><b>{{ $fullname }}</b></u></div>
             <div style="margin-left:40px;" id="text">
                 <div style="text-align:center; display:inline-block;">
                     You are hereby appointed as
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 120px; font-weight:bold;">
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 110px; font-weight:bold;">
                         {{ strtoupper($applicants->position) }}
                     </span>
                     (SG/JG/PG <u>&nbsp;{{ $salary->salary_grade }}&nbsp;</u>)
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:50px;">
-                        <i>(Position/Title)</i>
+                        (Position/Title)
                     </div>
                 </div>
             </div>
@@ -78,14 +80,14 @@
                         {{ strtoupper($other->employment_type) }}
                     </span>
                     status at the <span
-                        style="display:inline-block; border-bottom:1px solid #000;padding:0 10px; font-weight:bold;">
+                        style="display:inline-block; border-bottom:1px solid #000;padding:0 30px; font-weight:bold;">
                         Department of Education - Division of General Trias City
                     </span>
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;">
-                        <i style="margin-left:40px;">(Permanent,
-                            Temporary, etc)</i>
-                        <i style="margin-left:200px;">(Office,
-                            Department, Unit)</i>
+                        <span style="margin-left:40px;">(Permanent,
+                            Temporary, etc)</span>
+                        <span style="margin-left:200px;">(Office,
+                            Department, Unit)</span>
                     </div>
                 </div>
             </div>
@@ -108,7 +110,7 @@
                     </span>
                     vice <u><b style="padding:0 20px;">&nbsp;{{ $other->with }}&nbsp;</b></u> who
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:230px;">
-                        <i>(Original, Promotion, etc)</i>
+                        (Original, Promotion, etc)
                     </div>
                 </div>
             </div>
@@ -124,7 +126,7 @@
                     </span> Page
                     <u><b>&nbsp;{{ $other->page }}&nbsp;</b></u>.
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:5px;">
-                        <i>(Transferred, Retired, etc)</i>
+                        (Transferred, Retired, etc)
                     </div>
                 </div>
             </div>
@@ -137,7 +139,7 @@
             </div>
             <br /><br /><br />
             <div>
-                <label style="float:right;"><b>IVAN BRIAN L. INDUCTIVO, CESO VI</b></label><br /><br />
+                <label style="float:right;"><u><b>IVAN BRIAN L. INDUCTIVO, CESO VI</b></u></label><br /><br />
                 <label style="float:right;margin-right:50px;margin-top:-20px;"><i><small>Schools Division
                             Superitendent</small></i></label>
             </div>
@@ -145,7 +147,7 @@
             <div>
                 <label style="float:right;">
                     <b
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px;">{{ date('d F, Y',strtotime($other->date_signed)) }}</b>
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 85px;">{{ date('d F, Y',strtotime($other->date_signed)) }}</b>
                 </label><br /><br />
                 <label style="float:right;margin-right:100px;margin-top:-20px;">
                     <small>Date of Signing</small>
@@ -154,14 +156,11 @@
             <br /><br />
             <div>
                 <b>Accredited/Deregulated Pursuant to <br /></b>
-                <b>CSC Resolution No. 2400504, s. 2024</b>
+                <b>CSC Resolution No. 2400504, s. 2024</b><br />
+                <b>Dated : <u>&nbsp;19 June 2024&nbsp;</u></b>
             </div>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <div>
-
-                <label style="float:right;margin-right:50px;"><i><small>(Stamp of Date of Release)</small></i></label>
-            </div>
-            <br /><br />
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <br /><br /><br />
         </div>
     </div>
     <br />
@@ -171,53 +170,64 @@
                 <center><b>Certification</b></center>
             </div>
             <br />
-            <div id="text" style="margin-left: 20px;">
-                This is to certify that all requirements and supporting papers pursuant to <b>CSC MC No <u>&nbsp;24, s.
-                        2017,&nbsp;</u></b>
+            <div id="text" style="margin-left: 40px;">
+                This&nbsp; is&nbsp; to&nbsp; certify&nbsp; that&nbsp; all&nbsp;
+                requirements&nbsp; and&nbsp; supporting&nbsp; papers&nbsp; pursuant&nbsp;
+                to&nbsp; the&nbsp;<b>&nbsp;2025 Omnibus Rules on</b>
             </div>
             <div id="text">
-                <b>as amended</b> have been complied with, reviewied and found to be in order.
+                <b>Appointments and Other Human Resource Actions,</b> have been complied with, reviewied and found to be
+                in order.
             </div>
-            <div id="text" style="margin-left: 20px;">
+            <div id="text" style="margin-left: 40px;">
                 <div style="display:inline-block;">
                     This position was published at
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 75px; font-weight:bold;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 50px; font-weight:bold;">
                         CSC Job Portal
                     </span> from
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 20px; font-weight:bold;font-size:15px;">
-                        {{ date('F d, Y',strtotime($other->published_from)) }}
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 10px; font-weight:bold;font-size:15px;">
+                        {{ date('F d',strtotime($other->published_from)) }}
                     </span> to
+                    <span
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 10px;font-weight:bold;font-size:15px;">
+                        {{ date('F d',strtotime($other->published_to)) }}
+                    </span>,
                 </div>
             </div>
             <div id="text">
                 <div style="display:inline-block;">
-                    <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
-                        {{ date('F d, Y',strtotime($other->published_to)) }}
-                    </span> and posted in
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;padding:0 10px;">
-                        SDO Bulletin Board, School Bulletin Board and LGU Bulletin Board
+                        style="display:inline-block; border-bottom:1px solid #000;padding:0 10px; font-weight:bold;font-size:15px;">
+                        {{ date('Y',strtotime($other->published_to)) }}
                     </span>
-                </div>
-            </div>
-            <div id="text">
-                <div style="display:inline-block;">
-                    from
+                    and posted in three (3) conspicuous places from
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
-                        {{ date('F d, Y',strtotime($other->posted_from)) }}
+                        {{ date('F d',strtotime($other->posted_from)) }}
                     </span> to
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
-                        {{ date('F d, Y',strtotime($other->posted_to)) }}
-                    </span> in consonance with RA No. 7041. The assessment by
+                        {{ date('F d',strtotime($other->posted_to)) }}
+                    </span>,
+                    <span
+                        style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
+                        {{ date('Y',strtotime($other->posted_to)) }}
+                    </span>
+                    in
                 </div>
             </div>
+            <div id="text" style="width:100%;">
+                consonance&nbsp; with&nbsp; Republic&nbsp; Act&nbsp; No.&nbsp; 7041. The&nbsp; assessment&nbsp; by&nbsp;
+                the&nbsp; Human&nbsp; Resource&nbsp; Merit&nbsp; Promotion&nbsp; and
+            </div>
             <div id="text">
-                the Human Resource Merit Promotion and Selection Board (HRMPSB) started on
+                Selection&nbsp; Board&nbsp; (HRMPSB)&nbsp; started&nbsp; on&nbsp;
                 <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
-                    {{ date('F d, Y',strtotime($other->assessment_date)) }}.
+                    {{ date('F d',strtotime($other->assessment_date)) }}
+                </span>,
+                <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
+                    {{ date('Y',strtotime($other->assessment_date)) }}.
                 </span>
             </div>
             <br /><br />

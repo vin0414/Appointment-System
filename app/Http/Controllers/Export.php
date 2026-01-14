@@ -25,7 +25,7 @@ class Export extends Controller
                     <tbody>
                         <tr>
                             <td colspan="5">
-                            <b><i>CS Form No. 32</i></b><br/><small><i>Revised 2018</i></small>
+                            <b><i>CS Form No. 32</i></b><br/><small><i>Revised 2025</i></small>
                             </td>
                         </tr>
                         <tr><td colspan="5">&nbsp;</td></tr>
@@ -99,7 +99,7 @@ class Export extends Controller
                     <tbody>
                         <tr>
                             <td colspan="5">
-                            <b><i>CS Form No. 4</i></b><br/><small><i>Series of 2018</i></small>
+                            <b><i>CS Form No. 4</i></b><br/><small><i>Series of 2025</i></small>
                             </td>
                         </tr>
                         <tr><td colspan="5">&nbsp;</td></tr>
