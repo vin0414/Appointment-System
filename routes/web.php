@@ -46,6 +46,7 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::post('accounts/update', [Files::class,'editAccount'])->name('accounts/update');
     Route::post('accounts/reset',[Files::class,'resetAccount'])->name('accounts/reset');
     Route::post('accounts/password',[Files::class,'accountPassword'])->name('accounts/password');
+    Route::get('reports/generate',[Files::class,'generateReport'])->name('reports/generate');
     //export
     Route::get('export/form/32/{id}',[Export::class,'exportForm32'])->name('export/form/32');
     Route::get('export/form/4/{id}',[Export::class,'exportForm4'])->name('export/form/4');

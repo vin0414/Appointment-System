@@ -156,7 +156,7 @@
                     @csrf
                     <div class="col-lg-12">
                         <label class="form-label">Salary Grade</label>
-                        <input type="number" class="form-control" name="salary_grade" />
+                        <input type="text" class="form-control" name="salary_grade" />
                         <div id="salary_grade-error" class="error-message text-danger text-sm"></div>
                     </div>
                     <div class="col-lg-12">
@@ -196,7 +196,7 @@
                     <input type="hidden" name="salary_id" id="salary_id">
                     <div class="col-lg-12">
                         <label class="form-label">Salary Grade</label>
-                        <input type="number" class="form-control" name="edit_salary_grade" />
+                        <input type="text" class="form-control" name="edit_salary_grade" />
                         <div id="edit_salary_grade-error" class="error-message text-danger text-sm"></div>
                     </div>
                     <div class="col-lg-12">

@@ -187,11 +187,13 @@
                     </span> from
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; padding:0 10px; font-weight:bold;font-size:15px;">
-                        {{ date('F d',strtotime($other->published_from)) }}
+                        {!! $other->published_from ? date('F d', strtotime($other->published_from)) :
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' !!}
                     </span> to
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; padding:0 10px;font-weight:bold;font-size:15px;">
-                        {{ date('F d',strtotime($other->published_to)) }}
+                        {!! $other->published_to ? date('F d', strtotime($other->published_to)) :
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' !!}
                     </span>,
                 </div>
             </div>
@@ -199,20 +201,22 @@
                 <div style="display:inline-block;">
                     <span
                         style="display:inline-block; border-bottom:1px solid #000;padding:0 10px; font-weight:bold;font-size:15px;">
-                        {{ date('Y',strtotime($other->published_to)) }}
+                        {{ $other->published_to ? date('Y', strtotime($other->published_to)) : 'N/A' }}
                     </span>
                     and posted in three (3) conspicuous places from
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
-                        {{ date('F d',strtotime($other->posted_from)) }}
+                        {!! $other->posted_from ? date('F d', strtotime($other->posted_from)) :
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' !!}
                     </span> to
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
-                        {{ date('F d',strtotime($other->posted_to)) }}
+                        {!! $other->posted_to ? date('F d', strtotime($other->posted_to)) :
+                        '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N/A&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' !!}
                     </span>,
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding:0 20px;font-size:15px;">
-                        {{ date('Y',strtotime($other->posted_to)) }}
+                        {{ $other->posted_to ? date('Y', strtotime($other->posted_to)) : 'N/A' }}
                     </span>
                     in
                 </div>
@@ -223,12 +227,14 @@
             </div>
             <div id="text">
                 Selection&nbsp; Board&nbsp; (HRMPSB)&nbsp; started&nbsp; on&nbsp;
-                <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
-                    {{ date('F d',strtotime($other->assessment_date)) }}
+                <span
+                    style="display:inline-block; border-bottom:1px solid #000; padding:0 20px; font-weight:bold;font-size:15px;">
+                    {{ $other->assessment_date ? date('F d', strtotime($other->assessment_date)) : 'N/A' }}
                 </span>,
-                <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;">
-                    {{ date('Y',strtotime($other->assessment_date)) }}.
-                </span>
+                <span
+                    style="display:inline-block; border-bottom:1px solid #000; padding:0 10px; font-weight:bold;font-size:15px;">
+                    {{ $other->assessment_date ? date('Y', strtotime($other->assessment_date)) : 'N/A' }}
+                </span>.
             </div>
             <br /><br />
             <div>
@@ -253,7 +259,7 @@
                 during the deliberation held on
                 <span
                     style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;padding:0 20px;">
-                    {{ date('F d, Y',strtotime($other->assessment_date)) }}
+                    {{ $other->assessment_date ? date('F d, Y', strtotime($other->assessment_date)) : 'N/A' }}
                 </span>.
             </div>
             <br /><br />

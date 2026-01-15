@@ -54,7 +54,7 @@
                                 <div id="school-error" class="error-message text-danger text-sm"></div>
                             </div>
                             <div class="col-lg-12">
-                                <label class="form-label">Name of Principal</label>
+                                <label class="form-label">School Head/Principal</label>
                                 <input type="text" class="form-control" name="principal" />
                                 <div id="principal-error" class="error-message text-danger text-sm"></div>
                             </div>

@@ -516,4 +516,21 @@ class Files extends Controller
             }
         }
     }
+
+    public function generateReport(Request $request)
+    {
+        $month = (int) $request->input('month');
+        $year  = (int) $request->input('year');
+
+        $data = DB::table('assignments as a')
+                ->leftJoin('others as b','b.applicant_id','=','a.applicant_id')
+                ->leftJoin('schools as c','c.school_id','=','a.school_id')
+                ->leftJoin('salaries as d','d.salary_id','=','b.salary_id')
+                ->leftJoin('applicants as e','e.applicant_id','=','a.applicant_id')
+                ->select('b.appointment','d.salary_grade','c.school_name','a.created_at','e.position','e.sur_name','e.first_name','e.middle_name','e.suffix')
+                ->whereMonth('a.created_at', $month)
+                ->whereYear('a.created_at',$year)
+                ->get();
+        return response()->json(['data'=>$data]);
+    }
 }
