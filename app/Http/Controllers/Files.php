@@ -169,6 +169,35 @@ class Files extends Controller
         }
     }
 
+    public function editRecords(Request $request)
+    {
+        DB::table('applicants')
+        ->where('applicant_id',$request->input('applicant_id'))
+        ->update([
+            'first_name'=>$request->input('first_name'),
+            'middle_name'=>$request->input('middle_name'),
+            'sur_name'=>$request->input('sur_name'),
+            'suffix'=>$request->input('suffix'),
+            'position'=>$request->input('position'),
+            'gender'=>$request->input('gender'),
+            'government_id'=>$request->input('government_id'),
+            'id_number'=>$request->input('id_number'),
+            'date_issued'=>$request->input('date_issued'),
+            'address'=>$request->input('address'),
+            'brgy_captain'=>$request->input('brgy_captain'),
+            'education'=>$request->input('education'),
+            'experience'=>$request->input('experience'),
+            'training'=>$request->input('training')
+        ]);
+        Logs::create([
+            'id' => Auth::id(),
+            'activities' => 'edit records of  : '.$request->input('sur_name'),
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->header('User-Agent'),
+        ]);
+        return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
+    }
+
     public function saveSalary(Request $request)
     {
         $validator = Validator::make($request->all(),[
