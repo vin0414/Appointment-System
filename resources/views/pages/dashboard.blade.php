@@ -156,7 +156,7 @@ const chartValues = <?= json_encode($position) ?>;
 const labelx = chartValues.map(item => item.position);
 const value = chartValues.map(item => item.total);
 
-const backgroundColor = labels.map(() =>
+const backgroundColor = labelx.map(() =>
     `rgba(${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, 0.6)`
 );
 
