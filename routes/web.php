@@ -54,4 +54,5 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('export/form/1/{id}',[Export::class,'exportForm1'])->name('export/form/1');
     Route::get('export/form/33/B/{id}',[Export::class,'exportForm33B'])->name('export/form/33/B');
     Route::get('download',[Download::class,'downloadFile'])->name('download');
+    Route::get('records/download',[Download::class,'downloadRecords'])->name('records/download');
 });
