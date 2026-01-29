@@ -130,14 +130,15 @@
                                                             class="error-message text-danger text-sm"></div>
                                                     </div>
                                                     <div class="col-lg-5">
-                                                        <label class="form-label">Type of Employment</label>
+                                                        <label class="form-label">Employment (Permanent, Temporary,
+                                                            etc)</label>
                                                         <input type="text" class="form-control" name="employment"
                                                             value="{{ $info->employment_type ?? '' }}">
                                                         <div id="employment-error"
                                                             class="error-message text-danger text-sm"></div>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <label class="form-label">Type of Appointment</label>
+                                                        <label class="form-label">Nature of Appointment</label>
                                                         <input type="text" class="form-control" name="appointment"
                                                             value="{{ $info->appointment ?? '' }}">
                                                         <div id="appointment-error"
@@ -148,14 +149,15 @@
                                             <div class="col-lg-12">
                                                 <div class="row g-2">
                                                     <div class="col-lg-8">
-                                                        <label class="form-label">Name of Person</label>
+                                                        <label class="form-label">Vice</label>
                                                         <input type="text" class="form-control" name="person"
                                                             value="{{ $info->with ?? '' }}">
                                                         <div id="person-error"
                                                             class="error-message text-danger text-sm"></div>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <label class="form-label">Status</label>
+                                                        <label class="form-label">Status (Resigned, Retired
+                                                            ,etc)</label>
                                                         <input type="text" class="form-control" name="status"
                                                             value="{{ $info->status ?? '' }}">
                                                         <div id="status-error"
@@ -189,7 +191,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <label class="form-label">Published in CSC Job Portal</label>
+                                                <label class="form-label">Published in</label>
+                                                <input type="text" class="form-control" name="publisher"
+                                                    value="{{ $info->publisher ?? '' }}" />
+                                            </div>
+                                            <div class="col-lg-12">
                                                 <div class="row g-2">
                                                     <div class="col-lg-6">
                                                         <label class="form-label">From</label>

@@ -14,7 +14,7 @@ class Other extends Model
     public $incrementing = true;
     protected $fillable = [
         'applicant_id','salary_id','employment_type','appointment','with',
-        'status','item','page','date_signed','published_from','published_to',
+        'status','item','page','date_signed','publisher','published_from','published_to',
         'posted_from','posted_to','assessment_date'];
     public $timestamps = true;
 }

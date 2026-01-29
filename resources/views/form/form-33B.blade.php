@@ -79,7 +79,7 @@
                     <span style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;padding: 0 30px;">
                         {{ strtoupper($other->employment_type) }}
                     </span>
-                    status at the <span
+                    status&nbsp; at the <span
                         style="display:inline-block; border-bottom:1px solid #000;padding:0 30px; font-weight:bold;">
                         Department of Education - Division of General Trias City
                     </span>
@@ -108,20 +108,24 @@
                     <span style="display:inline-block; border-bottom:1px solid #000; padding:0 30px; font-weight:bold;">
                         {{ strtoupper($other->appointment) }}
                     </span>
-                    vice <u><b style="padding:0 20px;">&nbsp;{{ $other->with }}&nbsp;</b></u> who
-                    <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:230px;">
+                    &nbsp;vice &nbsp;
+                    <span
+                        style="display:inline-block; border-bottom:1px solid #000; padding: 0 {{ $other->with == 'N/A' ? '80px' : '30px' }}; font-weight:bold;">
+                        {{ strtoupper($other->with) }}
+                    </span>
+                    who
+                    <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:220px;">
                         (Original, Promotion, etc)
                     </div>
                 </div>
             </div>
             <div id="text">
                 <div style="display:inline-block;">
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 30px; font-weight:bold;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 50px; font-weight:bold;">
                         {{ strtoupper($other->status) }}
                     </span>
                     with Plantilla Item No.
-                    <span
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 100px; font-weight:bold;">
+                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 80px; font-weight:bold;">
                         {{ strtoupper($other->item) }}
                     </span> Page
                     <u><b>&nbsp;{{ $other->page }}&nbsp;</b></u>.
@@ -182,8 +186,9 @@
             <div id="text" style="margin-left: 40px;">
                 <div style="display:inline-block;">
                     This position was published at
-                    <span style="display:inline-block; border-bottom:1px solid #000; padding:0 50px; font-weight:bold;">
-                        CSC Job Portal
+                    <span
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 {{ $other->publisher == "N/A" ? '90px' : '50px;' }}; font-weight:bold;">
+                        {{ strtoupper($other->publisher) }}
                     </span> from
                     <span
                         style="display:inline-block; border-bottom:1px solid #000; padding:0 10px; font-weight:bold;font-size:15px;">
@@ -258,7 +263,7 @@
             <div id="text">
                 during the deliberation held on
                 <span
-                    style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;padding:0 20px;">
+                    style="display:inline-block; border-bottom:1px solid #000; font-weight:bold;font-size:15px;padding:0 30px;">
                     {{ $other->assessment_date ? date('F d, Y', strtotime($other->assessment_date)) : 'N/A' }}
                 </span>.
             </div>
@@ -276,7 +281,7 @@
                     <i><small>Office of the Assistant Schools Division Superitendent</small></i>
                 </label><br />
                 <label style="float:right;margin-right:90px;margin-top:-20px;">
-                    <i><small>HRMPSB Chairperson</small></i>
+                    <i><small>Chairperson, HRMPSB</small></i>
                 </label>
             </div>
         </div>
@@ -287,7 +292,7 @@
         <div style="border:1px solid #000; padding:10px;background-color:white;">
             <table id="table" style="width:100%;">
                 <thead>
-                    <th>
+                    <th colspan="3">
                         <center>ACTION ON APPOINTMENTS</center>
                     </th>
                     <th>
@@ -296,7 +301,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        <td colspan="3">
                             <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
                             <b>Validated per
                                 RAI for the month
@@ -305,7 +310,7 @@
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="3">
                             <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
                             <b>Invalidated
                                 per
@@ -319,6 +324,8 @@
                             <input type="checkbox" style="width:15px;height:12px;margin-bottom:4px;">
                             <b>Appeal</b>
                         </td>
+                        <td style="text-align:center;font-weight:bold;">DATE FILED</td>
+                        <td style="text-align:center;font-weight:bold;">STATUS</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
@@ -326,6 +333,8 @@
                             <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             CSCRO/CSC-Commission
                         </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
@@ -335,12 +344,16 @@
                                 Review</b>
                         </td>
                         <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
                             <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             CSCRO/CSC-Commission
                         </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
@@ -349,12 +362,16 @@
                             Court of Appeals
                         </td>2
                         <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                     </tr>
                     <tr>
                         <td>
                             <input type="checkbox" style="margin-left:40px;width:15px;height:12px;margin-bottom:4px;">
                             Supreme Court
                         </td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
                         <td>&nbsp;</td>
                     </tr>
                 </tbody>
@@ -367,16 +384,16 @@
             <tbody>
                 <tr>
                     <td style="width:50%;">
-                        <small>Original Copy - for the Appointee</small><br />
-                        <small>Original Copy - for the Civil Service Commission</small><br />
-                        <small>Original Copy - for the Agency</small>
+                        <small>Original Copy - for the Agency</small><br />
+                        <small>Certificed True Copy - for the Civil Service Commission</small><br />
+                        <small>Certified True Copy - for the Appointee</small>
                     </td>
                     <td style="width:50%;">
                         <center>
                             <b>Acknowledgement</b>
                         </center>
                         <br />
-                        <label style="font-size:12px;">Received original / photocopy of appointment on
+                        <label style="font-size:12px;"><i>Received original copy of the appointment on</i>
                             ______________</label>
                         <br /><br />
                         <div>
