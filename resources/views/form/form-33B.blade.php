@@ -34,6 +34,10 @@
     $other = \App\Models\Other::where('applicant_id',$id)->first();
     $salary = \App\Models\Salary::where('salary_id',$other->salary_id)->first();
     $salutatory = ($applicants->gender=="Male") ? '<u>Mr.</u>/Mrs./Ms.:' : 'Mr./Mrs./<u>Ms.</u>:';
+    if(empty($school))
+    {
+    return redirect()->back()->with('fail','No school assigned to this applicant yet.');
+    }
     @endphp
     <div>
         <label style="font-size: 12px;">{{ strtoupper($school->school_name) }}</label>

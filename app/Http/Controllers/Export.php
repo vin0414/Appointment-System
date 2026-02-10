@@ -92,6 +92,10 @@ class Export extends Controller
         $fullname = strtoupper($applicants->first_name.' '.$applicants->middle_name.' '.$applicants->sur_name.' '.$applicants->suffix);
         $assignment = Assignment::where('applicant_id',$id)->first();
         $school = Schools::where('school_id',$assignment->school_id)->first();
+        if(empty($school))
+        {
+            return redirect()->back()->with('fail','No school assigned to this applicant yet.');
+        }
         $html = '<style>
                 #text{text-align:justify;line-height:2.5;}
                 </style>
@@ -169,6 +173,10 @@ class Export extends Controller
 
     public function exportForm1($id)
     {
-
+        $pdf = Pdf::loadView('form.checklist', [
+            'id' => $id,
+        ])->setPaper([0, 0, 612, 936], 'portrait');
+        // Stream or download
+        return $pdf->download('Checklist.pdf');
     }
 }

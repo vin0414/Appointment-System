@@ -40,6 +40,11 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
+        @if(session('fail'))
+        <div class="alert alert-important alert-danger alert-dismissible" role="alert">
+            {{ session('fail') }}
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <br />
@@ -144,7 +149,7 @@
                             </svg>
                             &nbsp;Form No. 4
                         </a>
-                        <!-- <a href="{{ route('export/form/1',['id'=>$applicant->applicant_id]) }}" class="btn btn-default">
+                        <a href="{{ route('export/form/1',['id'=>$applicant->applicant_id]) }}" class="btn btn-default">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
@@ -154,8 +159,8 @@
                                 <path d="M7 11l5 5l5 -5" />
                                 <path d="M12 4l0 12" />
                             </svg>
-                            &nbsp;Form No. 1
-                        </a> -->
+                            &nbsp;Checklist
+                        </a>
                     </div>
                 </div>
             </div>
