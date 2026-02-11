@@ -340,6 +340,7 @@ class Files extends Controller
                     'posted_from'=>$request->input('posted_from'),
                     'posted_to'=>$request->input('posted_to'),
                     'assessment_date'=>$request->input('assessment'),
+                    'evaluator'=>Auth::id()
                 ]);
             }
             else
@@ -362,6 +363,7 @@ class Files extends Controller
                     'posted_from'=>$request->input('posted_from'),
                     'posted_to'=>$request->input('posted_to'),
                     'assessment_date'=>$request->input('assessment'),
+                    'evaluator'=>Auth::id(),
                     'updated_at'=>now()
                 ]);
             }

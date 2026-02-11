@@ -28,6 +28,7 @@
     '.$applicants->suffix);
     $other = \App\Models\Other::where('applicant_id',$id)->first();
     $salary = \App\Models\Salary::where('salary_id',$other->salary_id)->first();
+    $evaluator = \App\Models\User::where('id',$other->evaluator)->first();
     @endphp
     <div>
         <label style="float:right;font-size:8px;">
@@ -163,7 +164,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-left:20px;">
-                    ii. CS Form No. 33-B Revised 2018 Appointment Form (Accredited)
+                    ii. CS Form No. 33-B Revised 2025 Appointment Form (Accredited)
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -318,7 +319,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-left:10px;">
-                    <b>14 Properly filled-out Personal Data Sheet (CS Form 212, Revised 2017)</b><br />
+                    <b>14 Properly filled-out Personal Data Sheet (CS Form 212, Revised 2025)</b><br />
                     <i style="padding-left:10px;">(except for reappointment (renewal) to temporary,<br />contractual,
                         substitute, and provisional
                         appointments)</i>
@@ -336,7 +337,7 @@
                 <td colspan="3" style="padding-left: 10px;">
                     <b>15 Is the agency accredited?</b><br />
                     <i style="padding-left:10px;">
-                        i. If accredited, was RAI (CS Form No. 2, Revised 2018) with original copy of<br />
+                        i. If accredited, was RAI (CS Form No. 2, Revised 2025) with original copy of<br />
                     </i>
                     <i style="padding-left:10px;">
                         appointment (CSC copy) and supporting documents submitted to the CSC on or<br />
@@ -611,7 +612,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-left:10px;">
-                    <b>32529 Reclassification</b><br />
+                    <b>27 Reclassification</b><br />
                     <i style="padding-left:10px;">
                         * NOSCA approved by the DBM/Memo Order issued by Governance<br />
                         Commission for GOCCs (GCG)
@@ -643,7 +644,7 @@
             <tr>
                 <td colspan="3" style="padding-left:10px;">
                     <b>29 Position Description Form <i style="color:red;">(DBM-CSC Form No. 1, Revised
-                            2017)</i></b><br />
+                            2025)</i></b><br />
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -653,7 +654,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-left:10px;">
-                    <b>30 Oath of Office (CS Form No. 32, Revised 2018)</b>
+                    <b>30 Oath of Office (CS Form No. 32, Revised 2025)</b>
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -663,7 +664,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding-left:10px;">
-                    <b>31 Certification of Assumption to Duty (CS Form No. 4, Revised 2018)</b>
+                    <b>31 Certification of Assumption to Duty (CS Form No. 4, Revised 2025)</b>
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -698,7 +699,7 @@
             <tr>
                 <td colspan="3" style="padding-left:25px;">
                     i. Appointment Transmittal and Action Form (ATAF)<br />
-                    (CS Form No.1, Revised 2018) or
+                    (CS Form No.1, Revised 2025) or
                 </td>
                 <td></td>
                 <td></td>
@@ -706,7 +707,7 @@
             <tr>
                 <td colspan="3" style="padding-left:25px;">
                     ii. Reports on Appointment Issued (RAI)<br />
-                    (CS Form No. 2, Revised 2018)
+                    (CS Form No. 2, Revised 2025)
                 </td>
                 <td></td>
                 <td></td>
@@ -729,13 +730,17 @@
                     <div><input type="checkbox" checked /> <b>APPROVAL/VALIDATION</b></div>
                     <div><input type="checkbox" /> <b>DISAPPROVAL/INVALIDATION</b></div>
                     <div><input type="checkbox" /> <b>OTHERS,
-                            specify:</b>_____________________________________________________</div>
+                            specify:</b>________________________________________________________________________</div>
                     <span style="padding-left:15px;">Remarks (Indicate the reasons for disapproval/invalidation)</span>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
                     Evaluated: <br /><br /><br />
+                    <center>
+                        <u><b>{{ strtoupper($evaluator->name) }}</b></u><br />
+                        <i>Administrative Aide III</i>
+                    </center>
                 </td>
                 <td colspan="4">
                     Verified: <br /><br /><br />
@@ -765,6 +770,7 @@
             </tr>
         </tbody>
     </table>
+    <i>APC Form - (Revised 2018)</i>
 </body>
 
 </html>
