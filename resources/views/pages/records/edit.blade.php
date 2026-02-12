@@ -191,9 +191,33 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <label class="form-label">Published in</label>
-                                                <input type="text" class="form-control" name="publisher"
-                                                    value="{{ $info->publisher ?? '' }}" />
+                                                <div class="row g-2">
+                                                    <div class="col-lg-4">
+                                                        <label class="form-label">Position</label>
+                                                        <input type="text" class="form-control" name="position"
+                                                            value="{{ $applicant->position }}">
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label class="form-label">Level</label>
+                                                        <select name="level" class="form-select">
+                                                            <option value="">Choose</option>
+                                                            <option value="Elementary"
+                                                                {{ !empty($info) && $info->level == "Elementary" ? 'selected' : '' }}>
+                                                                Elementary</option>
+                                                            <option value="Secondary"
+                                                                {{ !empty($info) && $info->level == "Secondary" ? 'selected' : '' }}>
+                                                                Secondary</option>
+                                                            <option value="Senior High School"
+                                                                {{ !empty($info) && $info->level == "Senior High School" ? 'selected' : '' }}>
+                                                                Senior High School</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        <label class="form-label">Published in</label>
+                                                        <input type="text" class="form-control" name="publisher"
+                                                            value="{{ $info->publisher ?? '' }}" />
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="row g-2">

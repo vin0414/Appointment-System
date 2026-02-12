@@ -9,6 +9,7 @@ use \App\Models\Schools;
 use \App\Models\Assignment;
 use \App\Models\Salary;
 use \App\Models\Other;
+use \App\Models\Qualifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -322,6 +323,10 @@ class Files extends Controller
         else
         {
             $checkData = Other::where('applicant_id',$request->input('applicant'))->first();
+            //get the position of the applicant
+            $applicantModel = Applicant::where('applicant_id',$request->input('applicant'))->first();
+            $qualificationModel = Qualifications::where('position',$applicantModel->position)
+            ->where('level',$request->input('level'))->first();
             if(!$checkData||empty($checkData))
             {
                 Other::create([
@@ -340,7 +345,9 @@ class Files extends Controller
                     'posted_from'=>$request->input('posted_from'),
                     'posted_to'=>$request->input('posted_to'),
                     'assessment_date'=>$request->input('assessment'),
-                    'evaluator'=>Auth::id()
+                    'evaluator'=>Auth::id(),
+                    'level'=>$request->input('level'),
+                    'q_id'=>$qualificationModel->q_id
                 ]);
             }
             else
@@ -364,6 +371,8 @@ class Files extends Controller
                     'posted_to'=>$request->input('posted_to'),
                     'assessment_date'=>$request->input('assessment'),
                     'evaluator'=>Auth::id(),
+                    'level'=>$request->input('level'),
+                    'q_id'=>$qualificationModel->q_id,
                     'updated_at'=>now()
                 ]);
             }
