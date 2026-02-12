@@ -43,6 +43,9 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::post('salary/save',[Files::class,'saveSalary'])->name('salary/save');
     Route::post('salary/edit',[Files::class,'editSalary'])->name('salary/edit');
     Route::get('salary/fetch',[Files::class,'fetchSalary'])->name('salary/fetch');
+    Route::post('qualifications/save',[Files::class,'saveQualification'])->name('qualifications/save');
+    Route::get('qualifications/fetch',[Files::class,'fetchQualification'])->name('qualifications/fetch');
+    Route::post('qualifications/edit',[Files::class,'editQualification'])->name('qualifications/edit');
     Route::post('accounts/save', [Files::class,'saveAccount'])->name('accounts/save');
     Route::post('accounts/update', [Files::class,'editAccount'])->name('accounts/update');
     Route::post('accounts/reset',[Files::class,'resetAccount'])->name('accounts/reset');

@@ -575,4 +575,39 @@ class Files extends Controller
                 ->get();
         return response()->json(['data'=>$data]);
     }
+
+    public function saveQualification(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'position'=>'required',
+            'level'=>'required',
+            'education'=>'required',
+            'training'=>'required',
+            'experience'=>'required'
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            Qualifications::create([
+                'position'=>$request->input('position'),
+                'level'=>$request->input('level'),
+                'education'=>$request->input('education'),
+                'training'=>$request->input('training'),
+                'experience'=>$request->input('experience')
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Added new qualification for : '.$request->input('position'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully added']);
+        }
+    }
 }

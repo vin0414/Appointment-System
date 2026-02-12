@@ -8,6 +8,7 @@ use \App\Models\Other;
 use \App\Models\Applicant;
 use \App\Models\Salary;
 use \App\Models\User;
+use \App\Models\Qualifications;
 use Illuminate\Support\Facades\DB;
 
 class Home extends Controller
@@ -138,6 +139,7 @@ class Home extends Controller
                         ->select('a.*','b.name')
                         ->get();
         $data['salary'] = Salary::all();
+        $data['qualifications'] = Qualifications::all();
         return view('pages.maintenance.settings',$data);
     }
 

@@ -8,29 +8,6 @@
                 <div class="page-pretitle">{{ config('app.name') }}</div>
                 <h2 class="page-title"><?= $title ?></h2>
             </div>
-            <div class="col-auto ms-auto d-print-none">
-                <div class="btn-list">
-                    <button type="button" class="btn btn-success btn-5 d-none d-sm-inline-block add">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                        &nbsp;Add
-                    </button>
-                    <button type="button" class="btn btn-primary btn-6 d-sm-none btn-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -74,6 +51,24 @@
                             &nbsp;Salary Grades
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#tabs-qualifications" class="nav-link" data-bs-toggle="tab">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-certificate">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 15a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                <path d="M13 17.5v4.5l2 -1.5l2 1.5v-4.5" />
+                                <path
+                                    d="M10 19h-5a2 2 0 0 1 -2 -2v-10c0 -1.1 .9 -2 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -1 1.73" />
+                                <path d="M6 9l12 0" />
+                                <path d="M6 12l3 0" />
+                                <path d="M6 15l2 0" />
+                            </svg>
+                            &nbsp;Qualifications
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="card-body">
@@ -101,6 +96,16 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tabs-salary">
+                        <button type="button" class="btn btn-default btn-5 add">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 5l0 14" />
+                                <path d="M5 12l14 0" />
+                            </svg>
+                            &nbsp;Add
+                        </button>
                         <div class="table-responsive-lg">
                             <table class="table table-bordered table-striped" id="tables">
                                 <thead>
@@ -140,10 +145,63 @@
                             </table>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="tabs-qualifications">
+                        <button type="button" class="btn btn-default btn-5 addQualification">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 5l0 14" />
+                                <path d="M5 12l14 0" />
+                            </svg>
+                            &nbsp;Add
+                        </button>
+                        <div class="table-responsive-">
+                            <table class="table table-bordered table-striped" id="table2">
+                                <thead>
+                                    <th>Positions</th>
+                                    <th>Level</th>
+                                    <th>Education</th>
+                                    <th>Training</th>
+                                    <th>Experience</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody>
+                                    @foreach($qualifications as $row)
+                                    <tr>
+                                        <td>{{ $row->position }}</td>
+                                        <td>{{ $row->level }}</td>
+                                        <td>{{ $row->education }}</td>
+                                        <td>{{ $row->training }}</td>
+                                        <td>{{ $row->experience }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-success editQualification"
+                                                value="{{ $row->q_id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                    <path
+                                                        d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                                    <path
+                                                        d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415" />
+                                                    <path d="M16 5l3 3" />
+                                                </svg>
+                                                &nbsp;Edit
+                                            </button>
+                                        </td>
+                        </div>
+                        </tr>
+                        @endforeach
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <div class="modal modal-blur fade" id="addModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -223,11 +281,75 @@
         </div>
     </div>
 </div>
+
+<div class="modal modal-blur fade" id="addQualificationModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">New Qualification Standard</div>
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="row g-2" id="formQualification">
+                    @csrf
+                    <div class="col-lg-12">
+                        <label class="form-label">Position</label>
+                        <input type="text" class="form-control" name="position" />
+                        <div id="position-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Level</label>
+                        <select class="form-select" name="level">
+                            <option value="">Choose</option>
+                            <option value="Elementary">Elementary</option>
+                            <option value="Secondary">Secondary</option>
+                            <option value="Senior High School">Senior High School</option>
+                        </select>
+                        <div id="level-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Education</label>
+                        <textarea class="form-control" name="education"></textarea>
+                        <div id="education-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Training</label>
+                        <textarea class="form-control" name="training"></textarea>
+                        <div id="training-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Experience</label>
+                        <textarea class="form-control" name="experience"></textarea>
+                        <div id="experience-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                <path d="M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M14 4l0 4l-6 0l0 -4" />
+                            </svg>
+                            &nbsp;Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 $('#table').DataTable();
 $('#tables').DataTable();
+$('#table2').DataTable();
 $(document).on('click', '.add', function() {
     $('#addModal').modal('show');
+});
+$(document).on('click', '.addQualification', function() {
+    $('#addQualificationModal').modal('show');
 });
 $('#form').submit(function(e) {
     e.preventDefault();
@@ -287,6 +409,38 @@ $('#frmEdit').submit(function(e) {
     $('.error-message').html('');
     $.ajax({
         url: "{{ route('salary/edit') }}",
+        method: "POST",
+        data: data,
+        success: function(response) {
+            if (response.status == 200) {
+                // Success logic here
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response.message,
+                }).then(() => {
+                    location.reload();
+                });
+            } else {
+                var errors = response.errors;
+                for (var field in errors) {
+                    $('#' + field + '-error').html('<p>' + errors[field][0] + '</p>');
+                    $('#' + field).addClass('text-danger');
+                }
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.responseJSON);
+        }
+    });
+});
+
+$('#formQualification').submit(function(e) {
+    e.preventDefault();
+    let data = $(this).serialize();
+    $('.error-message').html('');
+    $.ajax({
+        url: "{{ route('qualifications/save') }}",
         method: "POST",
         data: data,
         success: function(response) {
