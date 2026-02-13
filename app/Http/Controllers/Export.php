@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 use \App\Models\Applicant;
-use \App\Models\Other;
 use \App\Models\Assignment;
 use \App\Models\Schools;
-use \App\Models\Salary;
-use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 

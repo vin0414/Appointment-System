@@ -29,6 +29,7 @@
     $other = \App\Models\Other::where('applicant_id',$id)->first();
     $salary = \App\Models\Salary::where('salary_id',$other->salary_id)->first();
     $evaluator = \App\Models\User::where('id',$other->evaluator)->first();
+    $qualification = \App\Models\Qualifications::where('q_id',$other->q_id)->first();
     @endphp
     <div>
         <label style="float:right;font-size:8px;">
@@ -87,7 +88,7 @@
                     <br />
                 </td>
                 <td colspan="3" style="padding:10px;">
-                    <b>1</b> Education :
+                    <b>1</b> Education : {{ $qualification->education }}
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -97,7 +98,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding:10px;">
-                    <b>2</b> Experience :
+                    <b>2</b> Experience : {{ $qualification->experience }}
                 </td>
                 <td>
                     <center>&#10003;</center>
@@ -107,7 +108,7 @@
             </tr>
             <tr>
                 <td colspan="3" style="padding:10px;">
-                    <b>3</b> Training :
+                    <b>3</b> Training : {{ $qualification->training }}
                 </td>
                 <td>
                     <center>&#10003;</center>

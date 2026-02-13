@@ -66,12 +66,12 @@
             <div><b>{!! $salutatory !!}</b> <u><b>{{ $fullname }}</b></u></div>
             <div style="margin-left:40px;" id="text">
                 <div style="text-align:center; display:inline-block;">
-                    You are hereby appointed as
+                    You&nbsp; are&nbsp; hereby&nbsp; appointed&nbsp; as&nbsp;
                     <span
-                        style="display:inline-block; border-bottom:1px solid #000; padding:0 110px; font-weight:bold;">
+                        style="display:inline-block; border-bottom:1px solid #000; padding:0 120px; font-weight:bold;">
                         {{ strtoupper($applicants->position) }}
                     </span>
-                    (SG/JG/PG <u>&nbsp;{{ $salary->salary_grade }}&nbsp;</u>)
+                    &nbsp;&nbsp;(SG/JG/PG <u>&nbsp;{{ $salary->salary_grade }}&nbsp;</u>)
                     <div style="font-size:12px; margin-top:2px;font-weight:bold;margin-top:-20px;margin-left:50px;">
                         (Position/Title)
                     </div>
