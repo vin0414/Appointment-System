@@ -610,4 +610,54 @@ class Files extends Controller
             return response()->json(['status'=>200,'message'=>'Successfully added']);
         }
     }
+
+    public function fetchQualification(Request $request)
+    {
+        $val = $request->input('value');
+        $data = Qualifications::where('q_id',$val)->first();
+        return response()->json(['status'=>200,'data'=>$data]);
+    }
+
+    public function editQualification(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'edit-position'=>'required',
+            'edit-level'=>'required',
+            'edit-education'=>'required',
+            'edit-training'=>'required',
+            'edit-experience'=>'required'
+        ],[
+            'edit-position.required'=>'Position is required',
+            'edit-level.required'=>'Level is required',
+            'edit-education.required'=>'Education is required',
+            'edit-training.required'=>'Training is required',
+            'edit-experience.required'=>'Experience is required'
+        ]);
+        if($validator->fails())
+        {
+            return response()->json([
+                'status' => 422,
+                'errors' => $validator->errors(),
+            ]);
+        }
+        else
+        {
+            DB::table('qualifications')
+            ->where('q_id',$request->input('q_id'))
+            ->update([
+                'position'=>$request->input('edit-position'),
+                'level'=>$request->input('edit-level'),
+                'education'=>$request->input('edit-education'),
+                'training'=>$request->input('edit-training'),
+                'experience'=>$request->input('edit-experience')
+            ]);
+            Logs::create([
+                'id' => Auth::id(),
+                'activities' => 'Update qualification for : '.$request->input('edit-position'),
+                'ip_address' => $request->ip(),
+                'user_agent' => $request->header('User-Agent'),
+            ]);
+            return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
+        }
+    }
 }

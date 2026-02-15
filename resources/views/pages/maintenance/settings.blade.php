@@ -341,6 +341,66 @@
     </div>
 </div>
 
+<div class="modal modal-blur fade" id="editQualificationModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Edit Qualification Standard</div>
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="row g-2" id="formEditQualification">
+                    @csrf
+                    <input type="hidden" name="q_id" id="q_id" />
+                    <div class="col-lg-12">
+                        <label class="form-label">Position</label>
+                        <input type="text" class="form-control" name="edit-position" />
+                        <div id="edit-position-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Level</label>
+                        <select class="form-select" name="edit-level">
+                            <option value="">Choose</option>
+                            <option value="Elementary">Elementary</option>
+                            <option value="Secondary">Secondary</option>
+                            <option value="Senior High School">Senior High School</option>
+                        </select>
+                        <div id="edit-level-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Education</label>
+                        <textarea class="form-control" name="edit-education"></textarea>
+                        <div id="edit-education-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Training</label>
+                        <textarea class="form-control" name="edit-training"></textarea>
+                        <div id="edit-training-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Experience</label>
+                        <textarea class="form-control" name="edit-experience"></textarea>
+                        <div id="edit-experience-error" class="error-message text-danger text-sm"></div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" />
+                                <path d="M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                                <path d="M14 4l0 4l-6 0l0 -4" />
+                            </svg>
+                            &nbsp;Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 $('#table').DataTable();
 $('#tables').DataTable();
@@ -441,6 +501,62 @@ $('#formQualification').submit(function(e) {
     $('.error-message').html('');
     $.ajax({
         url: "{{ route('qualifications/save') }}",
+        method: "POST",
+        data: data,
+        success: function(response) {
+            if (response.status == 200) {
+                // Success logic here
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response.message,
+                }).then(() => {
+                    location.reload();
+                });
+            } else {
+                var errors = response.errors;
+                for (var field in errors) {
+                    $('#' + field + '-error').html('<p>' + errors[field][0] + '</p>');
+                    $('#' + field).addClass('text-danger');
+                }
+            }
+        },
+        error: function(xhr) {
+            console.log(xhr.responseJSON);
+        }
+    });
+});
+
+$(document).on('click', '.editQualification', function() {
+    let id = $(this).val();
+    $.ajax({
+        url: "{{ route('qualifications/fetch') }}",
+        method: "GET",
+        data: {
+            value: id
+        },
+        success: function(data) {
+            if (data.status == 200) {
+                let info = data.data;
+                console.log(info);
+                $('#q_id').val(info.q_id);
+                $('input[name="edit-position"]').val(info.position);
+                $('select[name="edit-level"]').val(info.level);
+                $('textarea[name="edit-education"]').val(info.education);
+                $('textarea[name="edit-training"]').val(info.training);
+                $('textarea[name="edit-experience"]').val(info.experience);
+                $('#editQualificationModal').modal('show');
+            }
+        }
+    });
+});
+
+$('#formEditQualification').submit(function(e) {
+    e.preventDefault();
+    let data = $(this).serialize();
+    $('.error-message').html('');
+    $.ajax({
+        url: "{{ route('qualifications/edit') }}",
         method: "POST",
         data: data,
         success: function(response) {
