@@ -115,45 +115,192 @@
                             <span class="nav-link-title"> Schools </span>
                         </a>
                     </li>
-                    <li class="nav-item <?= ($title=="Records") ? 'active' :'' ?>">
-                        <a class="nav-link" href="{{ route('records') }}">
+                    <li class="nav-item dropdown <?= ($title=="Records" || $title=="Reports") ? 'active' :'' ?>">
+                        <a class="nav-link dropdown-toggle" href="#appointment" data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-server-2">
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-calendar-clock">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path
-                                        d="M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-2" />
-                                    <path
-                                        d="M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2" />
-                                    <path d="M7 8l0 .01" />
-                                    <path d="M7 16l0 .01" />
-                                    <path d="M11 8h6" />
-                                    <path d="M11 16h6" />
+                                    <path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
+                                    <path d="M16 3v4" />
+                                    <path d="M8 3v4" />
+                                    <path d="M4 11h10" />
+                                    <path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M18 16.5v1.5l.5 .5" />
                                 </svg>
                             </span>
-                            <span class="nav-link-title"> Records </span>
+                            <span class="nav-link-title">&nbsp;Deployment</span>
                         </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item {{ request()->routeIs('deployment/records') ? 'active' : '' }}"
+                                href="{{ route('deployment/records') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-brand-databricks">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M3 17l9 5l9 -5v-3l-9 5l-9 -5v-3l9 5l9 -5v-3l-9 5l-9 -5l9 -5l5.418 3.01" />
+                                </svg>
+                                Records
+                            </a>
+                            <a class="dropdown-item {{ request()->routeIs('deployment/reports') ? 'active' : '' }}"
+                                href="{{ route('deployment/reports') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-report">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
+                                    <path d="M18 14v4h4" />
+                                    <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
+                                    <path d="M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2" />
+                                    <path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M8 11h4" />
+                                    <path d="M8 15h3" />
+                                </svg>
+                                Reports
+                            </a>
+                        </div>
                     </li>
-                    <li class="nav-item <?= ($title=="Reports") ? 'active' :'' ?>">
-                        <a class="nav-link" href="{{ route('reports') }}">
+                    <li class="nav-item dropdown <?= ($title=="Career Advancement") ? 'active' :'' ?>">
+                        <a class="nav-link dropdown-toggle" href="#classification" data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-chart-histogram">
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-category">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 3v18h18" />
-                                    <path d="M20 18v3" />
-                                    <path d="M16 16v5" />
-                                    <path d="M12 13v8" />
-                                    <path d="M8 16v5" />
-                                    <path d="M3 11c6 0 5 -5 9 -5s3 5 9 5" />
+                                    <path d="M4 4h6v6h-6l0 -6" />
+                                    <path d="M14 4h6v6h-6l0 -6" />
+                                    <path d="M4 14h6v6h-6l0 -6" />
+                                    <path d="M14 17a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                 </svg>
                             </span>
-                            <span class="nav-link-title"> Reports </span>
+                            <span class="nav-link-title">&nbsp;Career Advancement</span>
                         </a>
+                        <div class="dropdown-menu">
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" href="#sidebar-ipcrf" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside" role="button" aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-library">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path
+                                            d="M7 5.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" />
+                                        <path
+                                            d="M4.012 7.26a2.005 2.005 0 0 0 -1.012 1.737v10c0 1.1 .9 2 2 2h10c.75 0 1.158 -.385 1.5 -1" />
+                                        <path d="M11 7h5" />
+                                        <path d="M11 10h6" />
+                                        <path d="M11 13h3" />
+                                    </svg>
+                                    IPCRF Management
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item {{ request()->routeIs('career-advancement/upload') ? 'active' : '' }}"
+                                        href="{{ route('career-advancement/upload') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-cloud-upload">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1" />
+                                            <path d="M9 15l3 -3l3 3" />
+                                            <path d="M12 12l0 9" />
+                                        </svg>
+                                        Upload IPCRF
+                                    </a>
+                                    <a class="dropdown-item {{ request()->routeIs('career-advancement') ? 'active' : '' }}"
+                                        href="{{ route('career-advancement') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-user-search">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                            <path d="M6 21v-2a4 4 0 0 1 4 -4h1.5" />
+                                            <path d="M15 18a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                                            <path d="M20.2 20.2l1.8 1.8" />
+                                        </svg>
+                                        Applicants IPCRF's
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="dropend">
+                                <a class="dropdown-item dropdown-toggle" href="#sidebar-reports"
+                                    data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button"
+                                    aria-expanded="false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-report">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
+                                        <path d="M18 14v4h4" />
+                                        <path d="M18 11v-4a2 2 0 0 0 -2 -2h-2" />
+                                        <path
+                                            d="M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2" />
+                                        <path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                        <path d="M8 11h4" />
+                                        <path d="M8 15h3" />
+                                    </svg>
+                                    Reports & Analytics
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item {{ request()->routeIs('career-advancement/reports/performance') ? 'active' : '' }}"
+                                        href="{{ route('career-advancement/reports/performance') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-chart-bar">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path
+                                                d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" />
+                                            <path
+                                                d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10" />
+                                            <path
+                                                d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14" />
+                                            <path d="M4 20h14" />
+                                        </svg>
+                                        Performance Rating
+                                    </a>
+                                    <a class="dropdown-item {{ request()->routeIs('career-advancement/reports/tracking') ? 'active' : '' }}"
+                                        href="{{ route('career-advancement/reports/tracking') }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-compass">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M8 16l2 -6l6 -2l-2 6l-6 2" />
+                                            <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                            <path d="M12 3l0 2" />
+                                            <path d="M12 19l0 2" />
+                                            <path d="M3 12l2 0" />
+                                            <path d="M19 12l2 0" />
+                                        </svg>
+                                        Compliance Tracking
+                                    </a>
+                                </div>
+                            </div>
+                            <a class="dropdown-item {{ request()->routeIs('career-advancement/documents') ? 'active' : '' }}"
+                                href="{{ route('career-advancement/documents') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-folder-open">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M5 19l2.757 -7.351a1 1 0 0 1 .936 -.649h12.307a1 1 0 0 1 .986 1.164l-.996 5.211a2 2 0 0 1 -1.964 1.625h-14.026a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2h4l3 3h7a2 2 0 0 1 2 2v2" />
+                                </svg>
+                                Document Repositories
+                            </a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown <?= ($title=="Maintenance") ? 'active' :'' ?>">
                         <a class="nav-link dropdown-toggle" href="#navbar-help" data-bs-toggle="dropdown"
@@ -180,14 +327,45 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item {{ request()->routeIs('maintenance/recovery') ? 'active' : '' }}"
                                 href="{{ route('maintenance/recovery') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-database-export">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M4 6c0 1.657 3.582 3 8 3s8 -1.343 8 -3s-3.582 -3 -8 -3s-8 1.343 -8 3" />
+                                    <path d="M4 6v6c0 1.657 3.582 3 8 3c1.118 0 2.183 -.086 3.15 -.241" />
+                                    <path d="M20 12v-6" />
+                                    <path d="M4 12v6c0 1.657 3.582 3 8 3c.157 0 .312 -.002 .466 -.005" />
+                                    <path d="M16 19h6" />
+                                    <path d="M19 16l3 3l-3 3" />
+                                </svg>
                                 System Back-Up
                             </a>
                             <a class="dropdown-item {{ request()->routeIs('maintenance/accounts') ? 'active' : '' }}"
                                 href="{{ route('maintenance/accounts') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-users">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                                    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                                </svg>
                                 Accounts
                             </a>
                             <a class="dropdown-item {{ request()->routeIs('maintenance/settings') ? 'active' : '' }}"
                                 href="{{ route('maintenance/settings') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-settings">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path
+                                        d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" />
+                                    <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                                </svg>
                                 Settings
                             </a>
                         </div>

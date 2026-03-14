@@ -66,7 +66,7 @@
                                         <span>Action</span>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a href="{{ route('records/edit',['id'=>$row->applicant_id]) }}"
+                                        <a href="{{ route('deployment/records/edit',['id'=>$row->applicant_id]) }}"
                                             class="dropdown-item">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -80,7 +80,7 @@
                                             </svg>
                                             &nbsp;Edit Record
                                         </a>
-                                        <a href="{{ route('records/view',['id'=>$row->applicant_id]) }}"
+                                        <a href="{{ route('deployment/records/view',['id'=>$row->applicant_id]) }}"
                                             class="dropdown-item">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

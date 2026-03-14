@@ -82,11 +82,12 @@ class Home extends Controller
         }
     }
 
+    //deployment
     public function allRecords()
     {
         $data['title'] = "Records";
         $data['applicants'] = Applicant::all();
-        return view('pages.records.index',$data);
+        return view('pages.deployment.records.index',$data);
     }
 
     public function editRecord($id)
@@ -106,7 +107,7 @@ class Home extends Controller
             $data['assignment'] = Assignment::where('applicant_id',$id)->first();
             //information
             $data['info'] = Other::where('applicant_id',$id)->first();
-            return view('pages.records.edit',$data);
+            return view('pages.deployment.records.edit',$data);
         }
     }
 
@@ -121,15 +122,35 @@ class Home extends Controller
         {
             $data['title'] = "Records";
             $data['applicant'] = $applicant;
-            return view('pages.records.view',$data);
+            return view('pages.deployment.records.view',$data);
         }
     }
 
     public function reports()
     {
         $data['title'] = "Reports";
-        return view('pages.reports.index',$data);
+        return view('pages.deployment.reports.index',$data);
     }
+
+    //career advancement
+    public function applicantIPCRF()
+    {
+        $data['title'] = "Career Advancement";
+        return view('pages.career-advancement.ipcrf.index',$data);
+    }
+
+    public function uploadApplicantIPCRF()
+    {
+        $data['title'] = "Career Advancement";
+        return view('pages.career-advancement.ipcrf.upload',$data);
+    }
+
+    public function viewApplicantIPCRF($id)
+    {
+        $data['title'] = "Career Advancement";
+        return view('pages.career-advancement.ipcrf.view',$data);
+    }
+
 
     public function settings()
     {

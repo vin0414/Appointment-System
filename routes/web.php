@@ -21,12 +21,20 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('schools', [Home::class,'allSchools'])->name('schools');
     Route::get('schools/create', [Home::class,'addSchool'])->name('schools/create');
     Route::get('schools/edit/{id}', [Home::class,'editSchool'])->name('schools/edit');
+    //deployment
     //records
-    Route::get('records', [Home::class,'allRecords'])->name('records');
-    Route::get('records/edit/{id}', [Home::class,'editRecord'])->name('records/edit');
-    Route::get('records/view/{id}', [Home::class,'viewRecord'])->name('records/view');
+    Route::get('deployment/records', [Home::class,'allRecords'])->name('deployment/records');
+    Route::get('deployment/records/edit/{id}', [Home::class,'editRecord'])->name('deployment/records/edit');
+    Route::get('deployment/records/view/{id}', [Home::class,'viewRecord'])->name('deployment/records/view');
     //reports
-    Route::get('reports', [Home::class,'reports'])->name('reports');
+    Route::get('deployment/reports', [Home::class,'reports'])->name('deployment/reports');
+    //career advancement
+    Route::get('career-advancement',[Home::class,'applicantIPCRF'])->name('career-advancement');
+    Route::get('career-advancement/upload',[Home::class,'uploadApplicantIPCRF'])->name('career-advancement/upload');
+    Route::get('career-advancement/view/{id}',[Home::class,'viewApplicantIPCRF'])->name('career-advancement/view');
+    Route::get('career-advancement/reports/performance',[Home::class,'applicantPerformance'])->name('career-advancement/reports/performance');
+    Route::get('career-advancement/reports/tracking',[Home::class,'applicantCompliance'])->name('career-advancement/reports/tracking');
+    Route::get('career-advancement/documents',[Home::class,'documents'])->name('career-advancement/documents');
     //maintenance
     Route::get('maintenance/recovery', [Home::class,'recovery'])->name('maintenance/recovery');
     Route::get('maintenance/accounts', [Home::class,'accounts'])->name('maintenance/accounts');

@@ -28,6 +28,7 @@
     <script src="{{ asset('assets/tabler/js/tom-select.js') }}" defer></script>
     <script src="{{ asset('assets/tabler/js/tabler-theme.min.js') }}" defer></script>
     <script src="{{ asset('assets/tabler/js/tabler.min.js') }}" defer></script>
+    <script src="{{ asset('assets/tabler/js/dirty-form.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
