@@ -41,7 +41,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-">
+                    <div class="col-lg-12">
                         <div class="row g-3">
                             <div class="col-lg-4">
                                 <label class="form-label">Name of Employee</label>
@@ -63,6 +63,18 @@
                                 <input type="text" class="form-control" name="rater" placeholder="eg. Juan Dela Cruz" />
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <label class="form-label">Attachment</label>
+                        <div class="dropzone" id="dropzone">
+                            <p>Drag & Drop files here or click to select files</p>
+                            <input type="file" id="fileInput" name="file" accept="application/pdf" />
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="submit" class="btn btn-success" id="btnUpload">
+                            <i class="ti ti-upload"></i>&nbsp;Upload
+                        </button>
                     </div>
                 </form>
             </div>

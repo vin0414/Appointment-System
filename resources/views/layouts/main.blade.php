@@ -17,6 +17,7 @@
     <link href="{{ asset('assets/tabler/css/vendors.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/tabler/css/tabler.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/tabler/css/tabler-themes.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/tabler/css/dropzone.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/2.2.1/css/dataTables.dataTables.css" />
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
@@ -29,6 +30,7 @@
     <script src="{{ asset('assets/tabler/js/tabler-theme.min.js') }}" defer></script>
     <script src="{{ asset('assets/tabler/js/tabler.min.js') }}" defer></script>
     <script src="{{ asset('assets/tabler/js/dirty-form.js') }}"></script>
+    <script src="{{ asset('assets/tabler/js/dropzone.js')}}" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
