@@ -45,7 +45,7 @@ function handleFiles(files) {
         const fileType = file.type;
         const fileName = file.name;
 
-        if (fileType === 'application/x-zip-compressed' || fileType === 'application/pdf') {
+        if (fileType === 'application/pdf') {
             isUploading = true; // Set the uploading flag to true
             console.log(`Uploading: ${fileName}`);
 
@@ -54,7 +54,7 @@ function handleFiles(files) {
             fileInput.files = dataTransfer.files;
 
             // Simulate file upload (replace with real upload logic)
-            simulateUpload(file);
+            //simulateUpload(file);
         } else {
             alert(`Invalid file type: ${fileName}. Only .zip and .pdf files are allowed.`);
         }

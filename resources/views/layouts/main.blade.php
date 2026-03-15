@@ -23,6 +23,10 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <style>
     @import url("https://rsms.me/inter/inter.css");
+
+    .middle {
+        vertical-align: middle;
+    }
     </style>
     <script src="{{ asset('assets/tabler/js/nouislider.min.js') }}" defer></script>
     <script src="{{ asset('assets/tabler/js/litepicker.js') }}" defer></script>

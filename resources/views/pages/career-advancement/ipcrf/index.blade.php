@@ -30,13 +30,20 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped" id="table">
+                    <table class="table table-bordered table-striped">
                         <thead>
-                            <th>#</th>
-                            <th>Complete Name</th>
-                            <th>Position</th>
-                            <th>School/Division</th>
-                            <th>Action</th>
+                            <tr>
+                                <th rowspan="2" class="middle">#</th>
+                                <th rowspan="2" class="middle text-center">Complete Name</th>
+                                <th colspan="2" class="middle text-center">Position</th>
+                                <th rowspan="2" class="middle text-center">School/Division</th>
+                                <th rowspan="2" class="middle text-center">School Year</th>
+                                <th rowspan="2" class="middle">Action</th>
+                            </tr>
+                            <tr>
+                                <td>From</td>
+                                <td>To</td>
+                            </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -46,6 +53,6 @@
     </div>
 </div>
 <script>
-$('#table').DataTable();
+$('.table').DataTable();
 </script>
 @endsection

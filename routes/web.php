@@ -23,11 +23,11 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('schools/edit/{id}', [Home::class,'editSchool'])->name('schools/edit');
     //deployment
     //records
-    Route::get('deployment/records', [Home::class,'allRecords'])->name('deployment/records');
-    Route::get('deployment/records/edit/{id}', [Home::class,'editRecord'])->name('deployment/records/edit');
-    Route::get('deployment/records/view/{id}', [Home::class,'viewRecord'])->name('deployment/records/view');
+    Route::get('appointment/records', [Home::class,'allRecords'])->name('appointment/records');
+    Route::get('appointment/records/edit/{id}', [Home::class,'editRecord'])->name('appointment/records/edit');
+    Route::get('appointment/records/view/{id}', [Home::class,'viewRecord'])->name('appointment/records/view');
     //reports
-    Route::get('deployment/reports', [Home::class,'reports'])->name('deployment/reports');
+    Route::get('appointment/reports', [Home::class,'reports'])->name('appointment/reports');
     //career advancement
     Route::get('career-advancement',[Home::class,'applicantIPCRF'])->name('career-advancement');
     Route::get('career-advancement/upload',[Home::class,'uploadApplicantIPCRF'])->name('career-advancement/upload');
