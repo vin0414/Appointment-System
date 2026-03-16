@@ -79,6 +79,6 @@ class Authentication extends Controller
         Session::flush();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect("/login")->with('error','You are logged out!');
+        return redirect("/auth")->with('error','You are logged out!');
     }
 }

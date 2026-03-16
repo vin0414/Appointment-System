@@ -29,10 +29,6 @@ class Home extends Controller
     {
         $data['title'] = "Dashboard";
         $data['schools'] = Schools::count();
-        $data['list'] = DB::table('schools')
-                        ->select('*')
-                        ->orderBy('school_id','DESC')
-                        ->limit(5)->get();
         $data['applicants'] = Applicant::count();
         $data['other'] = Other::count();
         $data['assignment'] = Assignment::count();
@@ -149,6 +145,12 @@ class Home extends Controller
     {
         $data['title'] = "Career Advancement";
         return view('pages.career-advancement.ipcrf.view',$data);
+    }
+
+    public function documents()
+    {
+        $data['title'] = "Career Advancement";
+        return view('pages.career-advancement.reports.document',$data);
     }
 
 

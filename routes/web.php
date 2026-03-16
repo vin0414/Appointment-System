@@ -12,7 +12,7 @@ Route::get('/logout',[Authentication::class,'logout'])->name('logout');
 Route::middleware('guest')->group(function ()
 {
     Route::get('/', [Home::class,'index'])->name('/');
-    Route::get('login', [Home::class,'login'])->name('login');
+    Route::get('auth', [Home::class,'login'])->name('auth');
     Route::post('sign-in',[Authentication::class,'Authenticate'])->name('sign-in');
 });
 Route::middleware(['auth','prevent'])->group(function(){
@@ -34,7 +34,7 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('career-advancement/view/{id}',[Home::class,'viewApplicantIPCRF'])->name('career-advancement/view');
     Route::get('career-advancement/reports/performance',[Home::class,'applicantPerformance'])->name('career-advancement/reports/performance');
     Route::get('career-advancement/reports/tracking',[Home::class,'applicantCompliance'])->name('career-advancement/reports/tracking');
-    Route::get('career-advancement/documents',[Home::class,'documents'])->name('career-advancement/documents');
+    Route::match(['GET','POST'],'career-advancement/documents',[Home::class,'documents'])->name('career-advancement/documents');
     //maintenance
     Route::get('maintenance/recovery', [Home::class,'recovery'])->name('maintenance/recovery');
     Route::get('maintenance/accounts', [Home::class,'accounts'])->name('maintenance/accounts');
