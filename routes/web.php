@@ -21,7 +21,11 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('schools', [Home::class,'allSchools'])->name('schools');
     Route::get('schools/create', [Home::class,'addSchool'])->name('schools/create');
     Route::get('schools/edit/{id}', [Home::class,'editSchool'])->name('schools/edit');
-    //deployment
+    //Teaching Rank
+    Route::get('ranks',[Home::class,'teachingRanks'])->name('ranks');
+    Route::get('ranks/create',[Home::class,'createTeachingRank'])->name('ranks/create');
+    Route::get('ranks/edit/{id}',[Home::class,'editTeachingRank'])->name('ranks/edit');
+    //appointment
     //records
     Route::get('appointment/records', [Home::class,'allRecords'])->name('appointment/records');
     Route::get('appointment/records/edit/{id}', [Home::class,'editRecord'])->name('appointment/records/edit');

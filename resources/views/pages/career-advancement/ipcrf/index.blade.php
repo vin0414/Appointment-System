@@ -41,8 +41,8 @@
                                 <th rowspan="2" class="middle">Action</th>
                             </tr>
                             <tr>
-                                <td>From</td>
-                                <td>To</td>
+                                <th>From</th>
+                                <th>To</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

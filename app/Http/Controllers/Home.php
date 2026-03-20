@@ -9,6 +9,7 @@ use \App\Models\Applicant;
 use \App\Models\Salary;
 use \App\Models\User;
 use \App\Models\Qualifications;
+use \App\Models\Ranks;
 use Illuminate\Support\Facades\DB;
 
 class Home extends Controller
@@ -78,7 +79,34 @@ class Home extends Controller
         }
     }
 
-    //deployment
+    //teaching rank
+    public function teachingRanks()
+    {
+        $data['title'] = "Ranks";
+        return view('pages.ranks.index',$data);
+    }
+
+    public function createTeachingRank()
+    {
+        $data['title'] = "Ranks";
+        return view('pages.ranks.create',$data);
+    }
+
+    public function editTeachingRank($id)
+    {
+        $ranks = Ranks::where('rank_id',$id)->first();
+        if(!$ranks || empty($ranks))        {
+            return redirect('/ranks')->with('fail', 'Sorry! Data not found. Please try again');
+        }
+        else
+        {
+            $data['title'] = "Ranks";
+            $data['ranks'] = $ranks;
+            return view('pages.ranks.edit',$data);
+        }
+    }
+
+    //appointment
     public function allRecords()
     {
         $data['title'] = "Records";
