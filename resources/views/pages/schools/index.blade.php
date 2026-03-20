@@ -18,7 +18,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        Add School
+                        Create
                     </a>
                     <a href="{{ route('schools/create') }}" class="btn btn-primary btn-6 d-sm-none btn-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

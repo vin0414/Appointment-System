@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form method="POST" class="row g-3" enctype="multipart/form-data" id="frmUpload">
+                <form method="POST" class="row g-3" enctype="multipart/form-data" id="form">
                     @csrf
                     <div class="col-lg-12">
                         <div class="row g-3">
@@ -49,12 +49,12 @@
                                     placeholder="eg. Juan Dela Cruz" />
                             </div>
                             <div class="col-lg-2">
-                                <label class="form-label">From</label>
+                                <label class="form-label">Position</label>
                                 <input type="text" class="form-control" name="from_position"
                                     placeholder="eg. Teacher I" />
                             </div>
                             <div class="col-lg-2">
-                                <label class="form-label">To</label>
+                                <label class="form-label">Applying For</label>
                                 <input type="text" class="form-control" name="to_position"
                                     placeholder="eg. Teacher III" />
                             </div>

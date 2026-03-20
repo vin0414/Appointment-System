@@ -6,7 +6,7 @@
         <div class="row align-items-center">
             <div class="col">
                 <div class="page-pretitle">{{ config('app.name') }}</div>
-                <h2 class="page-title"><?= $title ?></h2>
+                <h2 class="page-title"><?= $title ?> / <?= $subtitle ?></h2>
             </div>
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
@@ -89,33 +89,6 @@
     </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('form');
-    let isDirty = false;
-
-    // Detect changes on all inputs
-    form.querySelectorAll('input, textarea, select').forEach((el) => {
-        el.addEventListener('change', () => {
-            isDirty = true;
-        });
-        el.addEventListener('input', () => {
-            isDirty = true;
-        });
-    });
-
-    // Prevent accidental navigation
-    window.addEventListener('beforeunload', function(e) {
-        if (isDirty) {
-            e.preventDefault();
-            e.returnValue = ''; // Required for Chrome
-        }
-    });
-
-    // If form is submitted, disable the warning
-    form.addEventListener('submit', function() {
-        isDirty = false;
-    });
-});
 $('#form').submit(function(e) {
     e.preventDefault();
     let data = $(this).serialize();

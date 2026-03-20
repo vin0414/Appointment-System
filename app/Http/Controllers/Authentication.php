@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use \App\Models\User;
-use \App\Models\Logs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
+use App\Services\LogService;
+use \App\Models\User;
+
 
 class Authentication extends Controller
 {
+    private $logService;
+    public function __construct(LogService $logService)
+    {
+        $this->logService = $logService;
+    }
+
     public function Authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -56,12 +63,7 @@ class Authentication extends Controller
             RateLimiter::clear($throttleKey);
             $request->session()->regenerate();
             //log the event log
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'User logged in',
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            $this->logService->saveLogs('User logged in',$request->ip(),$request->header('User-Agent'));
             return redirect()->intended('/dashboard');
         }
     }
@@ -69,12 +71,7 @@ class Authentication extends Controller
     public function logout(Request $request)
     {
         //log the event log
-        Logs::create([
-            'id' => Auth::id(),
-            'activities' => 'User logged out',
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->header('User-Agent'),
-        ]);
+        $this->logService->saveLogs('User logged out',$request->ip(),$request->header('User-Agent'));
         Auth::logout();
         Session::flush();
         $request->session()->invalidate();

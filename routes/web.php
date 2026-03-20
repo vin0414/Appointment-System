@@ -6,6 +6,7 @@ use App\Http\Controllers\Files;
 use App\Http\Controllers\Export;
 use App\Http\Controllers\Download;
 use App\Http\Controllers\Authentication;
+use App\Http\Controllers\Performance;
 //save the applicant data
 Route::post('applicant/save',[Files::class,'saveApplicant'])->name('applicant/save');
 Route::get('/logout',[Authentication::class,'logout'])->name('logout');
@@ -46,23 +47,31 @@ Route::middleware(['auth','prevent'])->group(function(){
     Route::get('maintenance/accounts/edit/{id}', [Home::class,'editAccount'])->name('maintenance/accounts/edit');
     Route::get('maintenance/settings', [Home::class,'settings'])->name('maintenance/settings');
     Route::get('profile', [Home::class,'profile'])->name('profile');
-    //ajax
+    //ajax requests
+    //schools
     Route::post('schools/save', [Files::class,'saveSchool'])->name('schools/save');
     Route::post('schools/update', [Files::class,'updateSchool'])->name('schools/update');
+    //applicants
     Route::post('records/assign', [Files::class,'assignApplicant'])->name('records/assign');
     Route::post('records/save', [Files::class,'saveRecords'])->name('records/save');
     Route::post('records/update', [Files::class,'editRecords'])->name('records/update');
+    //salary grade
     Route::post('salary/save',[Files::class,'saveSalary'])->name('salary/save');
     Route::post('salary/edit',[Files::class,'editSalary'])->name('salary/edit');
     Route::get('salary/fetch',[Files::class,'fetchSalary'])->name('salary/fetch');
+    //qualifications
     Route::post('qualifications/save',[Files::class,'saveQualification'])->name('qualifications/save');
     Route::get('qualifications/fetch',[Files::class,'fetchQualification'])->name('qualifications/fetch');
     Route::post('qualifications/edit',[Files::class,'editQualification'])->name('qualifications/edit');
+    //maintenance
     Route::post('accounts/save', [Files::class,'saveAccount'])->name('accounts/save');
     Route::post('accounts/update', [Files::class,'editAccount'])->name('accounts/update');
     Route::post('accounts/reset',[Files::class,'resetAccount'])->name('accounts/reset');
     Route::post('accounts/password',[Files::class,'accountPassword'])->name('accounts/password');
     Route::get('reports/generate',[Files::class,'generateReport'])->name('reports/generate');
+    //teaching ranks
+    Route::post('ranks/save',[Performance::class,'saveRank'])->name('ranks/save');
+    Route::post('ranks/update',[Performance::class,'updateRank'])->name('ranks/update');
     //export
     Route::get('export/form/32/{id}',[Export::class,'exportForm32'])->name('export/form/32');
     Route::get('export/form/4/{id}',[Export::class,'exportForm4'])->name('export/form/4');

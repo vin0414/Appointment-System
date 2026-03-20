@@ -19,7 +19,7 @@
                             <path d="M9 12h6" />
                             <path d="M12 9v6" />
                         </svg>
-                        Add New
+                        Create
                     </a>
                     <a href="{{ route('ranks/create') }}" class="btn btn-primary btn-6 d-sm-none btn-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -38,6 +38,11 @@
 </div>
 <div class="page-body">
     <div class="container-xl">
+        @if(session('fail'))
+        <div class="alert alert-important alert-danger alert-dismissible" role="alert">
+            {{ session('fail') }}
+        </div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <div class="card-title">
@@ -54,9 +59,51 @@
                 </div>
             </div>
             <div class="card-body">
-
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="table">
+                        <thead>
+                            <th>#</th>
+                            <th>Position</th>
+                            <th>Career Stage</th>
+                            <th>COI & Competency</th>
+                            <th>NCOI & Competency</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            @foreach($ranks as $row)
+                            <tr>
+                                <td>{{ $row->rank_id }}</td>
+                                <td>{{ $row->position }}</td>
+                                <td>{{ $row->career_stage }}</td>
+                                <td>At least {{ $row->coi }} Proficient at {{ $row->coi_competency }}</td>
+                                <td>At least {{ $row->ncoi }} Proficient at {{ $row->ncoi_competency }}</td>
+                                <td>{{ $row->status == 1 ? 'Active' : 'Inactive' }}</td>
+                                <td>
+                                    <a href="{{ route('ranks/edit',['id'=>$row->rank_id]) }}" class="btn btn-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                            <path
+                                                d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415" />
+                                            <path d="M16 5l3 3" />
+                                        </svg>
+                                        &nbsp;Edit
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+$('#table').DataTable();
+</script>
 @endsection

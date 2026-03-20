@@ -41,8 +41,8 @@
                                 <th rowspan="2" class="middle">Action</th>
                             </tr>
                             <tr>
-                                <th>From</th>
-                                <th>To</th>
+                                <th>Current</th>
+                                <th>Applying For</th>
                             </tr>
                         </thead>
                         <tbody></tbody>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use \App\Models\User;
 use \App\Models\Applicant;
-use \App\Models\Logs;
 use \App\Models\Schools;
 use \App\Models\Assignment;
 use \App\Models\Salary;
@@ -17,9 +16,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Number;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Services\LogService;
 
 class Files extends Controller
 {
+    private $logService;
+    public function __construct(LogService $logService)
+    {
+        $this->logService = $logService;
+    }
     public function saveApplicant(Request $request)
     {
         $validator = Validator::make($request->all(),[
@@ -85,12 +90,8 @@ class Files extends Controller
                 'principal'=>$request->input('principal'),
                 'designation'=>$request->input('designation')
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Added new school',
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User added new school',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully added']);
         }
     }
@@ -119,12 +120,8 @@ class Files extends Controller
                 'principal'=>$request->input('principal'),
                 'designation'=>$request->input('designation')
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Update '.$request->input('school'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User updated school information',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
         }
     }
@@ -160,12 +157,8 @@ class Files extends Controller
                     'school_id'=>$request->input('school'),
                 ]);
             }
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Assigned user ID : '.$request->input('applicant'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User assigned the applicant to a school',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully assigned']);
         }
     }
@@ -190,12 +183,8 @@ class Files extends Controller
             'experience'=>$request->input('experience'),
             'training'=>$request->input('training')
         ]);
-        Logs::create([
-            'id' => Auth::id(),
-            'activities' => 'edit records of  : '.$request->input('sur_name'),
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->header('User-Agent'),
-        ]);
+        //log the activity
+        $this->logService->saveLogs('User edited applicant records',$request->ip(),$request->header('User-Agent'));
         return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
     }
 
@@ -227,12 +216,8 @@ class Files extends Controller
                 'amount'=>$amount,
                 'amount_in_words'=>$this->pesoToWords($amount)
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Added new salary grade : '.$request->input('salary_grade'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User added new salary grade',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully added']);
         }
     }
@@ -284,12 +269,8 @@ class Files extends Controller
                 'amount'=>$amount,
                 'amount_in_words'=>$this->pesoToWords($amount)
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Update the salary grade : '.$request->input('edit_salary_grade'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity//log the activity
+            $this->logService->saveLogs('User edited salary grade',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
         }
     }
@@ -376,12 +357,8 @@ class Files extends Controller
                     'updated_at'=>now()
                 ]);
             }
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Save/update the records of Applicant No : '.$request->input('applicant'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User edited applicant information',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully save/update data']);
         }
     }
@@ -423,12 +400,8 @@ class Files extends Controller
                 'password'=>Hash::make($request->input('password')),
                 'remember_token'=>Str::random(60)
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Registered account : '.$request->input('fullname'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User added new user',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully added']);
         }
     }
@@ -472,12 +445,8 @@ class Files extends Controller
                 'email_verified_at' => ($status == 1) ? now() : null,
                 'password'=>Hash::make($request->input('password')),
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Update account : '.$request->input('fullname'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User edited account',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
         }
     }
@@ -490,12 +459,8 @@ class Files extends Controller
         ->update([
             'password'=>Hash::make('Abc12345?')
         ]);
-        Logs::create([
-            'id' => Auth::id(),
-            'activities' => 'Reset the  account of ID : '.$val,
-            'ip_address' => $request->ip(),
-            'user_agent' => $request->header('User-Agent'),
-        ]);
+        //log the activity
+        $this->logService->saveLogs('User reset account password',$request->ip(),$request->header('User-Agent'));
         return response()->json(['status'=>200,'message'=>'Successfully reset']);
     }
 
@@ -551,6 +516,8 @@ class Files extends Controller
                 ->update([
                     'password'=>bcrypt($request->input('new_password'))
                 ]);
+                //log the activity
+                $this->logService->saveLogs('User updated password',$request->ip(),$request->header('User-Agent'));
                 return response()->json([
                     'status' => 200,
                     'success' => 'Successfully applied changes',
@@ -601,12 +568,8 @@ class Files extends Controller
                 'training'=>$request->input('training'),
                 'experience'=>$request->input('experience')
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Added new qualification for : '.$request->input('position'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User saved qualification',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully added']);
         }
     }
@@ -651,12 +614,8 @@ class Files extends Controller
                 'training'=>$request->input('edit-training'),
                 'experience'=>$request->input('edit-experience')
             ]);
-            Logs::create([
-                'id' => Auth::id(),
-                'activities' => 'Update qualification for : '.$request->input('edit-position'),
-                'ip_address' => $request->ip(),
-                'user_agent' => $request->header('User-Agent'),
-            ]);
+            //log the activity
+            $this->logService->saveLogs('User edited qualification',$request->ip(),$request->header('User-Agent'));
             return response()->json(['status'=>200,'message'=>'Successfully applied changes']);
         }
     }

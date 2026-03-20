@@ -60,7 +60,8 @@ class Home extends Controller
 
     public function addSchool()
     {
-        $data['title'] = "Add School";
+        $data['title'] = "Schools";
+        $data['subtitle'] = "Create";
         return view('pages.schools.add',$data);
     }
 
@@ -74,6 +75,7 @@ class Home extends Controller
         else
         {
             $data['title'] = "Schools";
+            $data['subtitle'] = "Edit";
             $data['schools'] = $schools;
             return view('pages.schools.edit',$data);
         }
@@ -83,12 +85,14 @@ class Home extends Controller
     public function teachingRanks()
     {
         $data['title'] = "Ranks";
+        $data['ranks'] = Ranks::all();
         return view('pages.ranks.index',$data);
     }
 
     public function createTeachingRank()
     {
         $data['title'] = "Ranks";
+        $data['subtitle'] = "Create";
         return view('pages.ranks.create',$data);
     }
 
@@ -101,6 +105,7 @@ class Home extends Controller
         else
         {
             $data['title'] = "Ranks";
+            $data['subtitle'] = "Edit";
             $data['ranks'] = $ranks;
             return view('pages.ranks.edit',$data);
         }
