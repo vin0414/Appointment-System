@@ -28,6 +28,9 @@
                                 <label class="form-label">Bureau/Center/Service/Division</label>
                                 <select class="form-select" name="office" id="office">
                                     <option value="">Choose</option>
+                                    @foreach($schools as $school)
+                                    <option value="{{ $school->school_id }}">{{ $school->school_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-lg-3">
@@ -55,8 +58,12 @@
                             </div>
                             <div class="col-lg-2">
                                 <label class="form-label">Applying For</label>
-                                <input type="text" class="form-control" name="to_position"
-                                    placeholder="eg. Teacher III" />
+                                <select class="form-select" name="to_position" id="position">
+                                    <option value="">Choose</option>
+                                    @foreach($ranks as $rank)
+                                    <option value="{{ $rank->rank_id }}">{{ $rank->position }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-lg-4">
                                 <label class="form-label">Name of Rater</label>

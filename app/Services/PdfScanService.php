@@ -6,5 +6,13 @@ use Illuminate\Support\Facades\DB;
 
 class PdfScanService
 {
+    public function scanFile($filePath)
+    {
 
+    }
+
+    public function saveScanResult($Data)
+    {
+
+    }
 }

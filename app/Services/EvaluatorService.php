@@ -42,24 +42,4 @@ class EvaluatorService
         return 'Update failed: either no record found or no changes applied';
 
     }
-
-    public function readPdfFile($filePath)
-    {
-
-    }
-
-    public function saveScannedDataByBatch($data)
-    {
-
-    }
-
-    public function computeTotalAverage()
-    {
-
-    }
-
-    public function generateResultPerApplicant()
-    {
-
-    }
 }

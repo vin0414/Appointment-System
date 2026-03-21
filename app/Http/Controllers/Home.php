@@ -171,6 +171,8 @@ class Home extends Controller
     public function uploadApplicantIPCRF()
     {
         $data['title'] = "Career Advancement";
+        $data['schools'] = Schools::all();
+        $data['ranks'] = Ranks::where('status',1)->get();
         return view('pages.career-advancement.ipcrf.upload',$data);
     }
 
